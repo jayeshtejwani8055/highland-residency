@@ -207,6 +207,16 @@
   .btn-confirm { background: var(--danger); color: #fff; border-color: var(--danger); }
   .btn-cancel:hover { background: var(--border); }
   .btn-confirm:hover { opacity: 0.88; }
+
+  /* Grouped flat directory */
+  .flat-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 10px; overflow: hidden; }
+  .flat-group-header { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--surface); }
+  .flat-group-vehicles { border-top: 1px solid var(--border); padding: 4px 16px; background: var(--surface2); }
+  .veh-sub-row { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .veh-sub-row:last-child { border-bottom: none; }
+  .type-pill { font-size: 11px; font-weight: 500; background: var(--surface); border: 1px solid var(--border-md); border-radius: 20px; padding: 2px 9px; color: var(--text-2); flex-shrink: 0; }
+  .veh-count-badge { font-size: 11px; font-weight: 500; background: var(--accent-light); color: var(--accent-text); border-radius: 20px; padding: 3px 10px; white-space: nowrap; flex-shrink: 0; }
+  .veh-sub-row .plate { flex: 1; text-align: right; }
 </style>
 </head>
 <body>
@@ -249,13 +259,13 @@
     </div>
     <div id="lookup-result"></div>
 
-    <!-- <div class="card" style="margin-top:18px">
+    <div class="card" style="margin-top:18px">
       <div class="card-title">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         Recently registered
       </div>
       <div id="recent-list"></div>
-    </div> -->
+    </div>
   </div>
 
   <!-- REGISTER -->
@@ -510,7 +520,7 @@ function renderDirectory(){
   const q=document.getElementById('dir-search').value.toLowerCase();
   const bl=document.getElementById('dir-block').value;
   var list=vehicles.filter(function(v){
-    var mq=!q||v.name.toLowerCase().includes(q)||v.plate.toLowerCase().includes(q);
+    var mq=!q||v.name.toLowerCase().includes(q)||v.plate.toLowerCase().includes(q)||v.flat.toLowerCase().includes(q);
     var mb=!bl||v.block===bl;
     return mq&&mb;
   }).sort(function(a,b){
@@ -521,11 +531,31 @@ function renderDirectory(){
   if(!list.length){
     el.innerHTML='<div class="empty" style="padding:30px 0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><div>No results found</div></div>';
   } else {
-    el.innerHTML=list.map(function(v){
-      return '<div class="veh-row"><div class="veh-info"><div class="avatar '+avClass(v.name)+'">'+initials(v.name)+'</div><div><div class="veh-name">'+v.name+'</div><div class="veh-sub">'+flatLabel(v)+' · '+v.type+'</div></div></div>'
-        +'<div class="vr-right" style="display:flex;align-items:center;gap:8px"><span class="plate">'+v.plate+'</span>'
-        +'<button class="del-btn" onclick="deleteVehicle(\''+v.id+'\',\''+v.name+'\')" title="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>'
-        +'</div></div>';
+    var groups={};
+    var groupOrder=[];
+    list.forEach(function(v){
+      var key=v.block+'-'+v.flat;
+      if(!groups[key]){groups[key]={block:v.block,flat:v.flat,floor:v.floor,name:v.name,vehicles:[]};groupOrder.push(key);}
+      groups[key].vehicles.push(v);
+    });
+    var delIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>';
+    el.innerHTML=groupOrder.map(function(key){
+      var g=groups[key];
+      var rows=g.vehicles.map(function(v){
+        return '<div class="veh-sub-row">'
+          +'<span class="type-pill">'+v.type+'</span>'
+          +'<span class="plate" style="font-size:12px">'+v.plate+'</span>'
+          +'<button class="del-btn" onclick="deleteVehicle(''+v.id+'',''+v.name+'')" title="Remove">'+delIcon+'</button>'
+          +'</div>';
+      }).join('');
+      return '<div class="flat-group">'
+        +'<div class="flat-group-header">'
+        +'<div class="avatar '+avClass(g.name)+'">'+initials(g.name)+'</div>'
+        +'<div style="flex:1"><div class="veh-name">'+g.name+'</div><div class="veh-sub">Block '+g.block+' &middot; Flat '+g.flat+'</div></div>'
+        +'<span class="veh-count-badge">'+g.vehicles.length+' vehicle'+(g.vehicles.length>1?'s':'')+'</span>'
+        +'</div>'
+        +'<div class="flat-group-vehicles">'+rows+'</div>'
+        +'</div>';
     }).join('');
   }
 
