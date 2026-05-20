@@ -194,6 +194,19 @@
     .form-grid { grid-template-columns: 1fr 1fr; }
     .stats { grid-template-columns: 1fr 1fr; }
   }
+
+  /* PIN modal overlay */
+  .pin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 500; align-items: center; justify-content: center; padding: 20px; }
+  .pin-box { background: var(--surface); border-radius: var(--radius-lg); padding: 24px; width: 100%; max-width: 320px; border: 1px solid var(--border); }
+  .pin-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .pin-label { font-size: 13px; color: var(--text-2); margin-bottom: 16px; line-height: 1.5; }
+  .pin-error { font-size: 12px; color: var(--danger); margin-top: 6px; display: none; }
+  .pin-actions { display: flex; gap: 8px; margin-top: 16px; }
+  .pin-actions button { flex: 1; height: 40px; border-radius: var(--radius); border: 1px solid var(--border); font-family: var(--font); font-size: 13px; font-weight: 500; cursor: pointer; }
+  .btn-cancel { background: var(--surface2); color: var(--text-2); }
+  .btn-confirm { background: var(--danger); color: #fff; border-color: var(--danger); }
+  .btn-cancel:hover { background: var(--border); }
+  .btn-confirm:hover { opacity: 0.88; }
 </style>
 </head>
 <body>
@@ -457,11 +470,40 @@ function doRegister(){
     });
 }
 
+var pendingDeleteId=null;
+var pendingDeleteName=null;
+var ADMIN_PIN='382330';
+
 function deleteVehicle(docId, name){
-  if(!confirm('Remove '+name+"'s vehicle from the registry?"))return;
-  vehiclesCol.doc(docId).delete()
+  pendingDeleteId=docId;
+  pendingDeleteName=name;
+  document.getElementById('pin-label').textContent='Enter admin PIN to remove '+name+"'s vehicle";
+  document.getElementById('pin-input').value='';
+  document.getElementById('pin-error').style.display='none';
+  document.getElementById('pin-modal').style.display='flex';
+  setTimeout(function(){document.getElementById('pin-input').focus();},100);
+}
+
+function closePinModal(){
+  document.getElementById('pin-modal').style.display='none';
+  pendingDeleteId=null;
+  pendingDeleteName=null;
+}
+
+function confirmDelete(){
+  var entered=document.getElementById('pin-input').value.trim();
+  if(entered!==ADMIN_PIN){
+    document.getElementById('pin-error').style.display='block';
+    document.getElementById('pin-input').value='';
+    document.getElementById('pin-input').focus();
+    return;
+  }
+  document.getElementById('pin-modal').style.display='none';
+  vehiclesCol.doc(pendingDeleteId).delete()
     .then(function(){showToast('Vehicle removed.');})
     .catch(function(){showToast('Error removing. Try again.', true);});
+  pendingDeleteId=null;
+  pendingDeleteName=null;
 }
 
 function renderDirectory(){
@@ -515,5 +557,21 @@ vehiclesCol.onSnapshot(function(snapshot){
 });
 
 </script>
+
+<div class="pin-overlay" id="pin-modal">
+  <div class="pin-box">
+    <div class="pin-title">Admin verification</div>
+    <div class="pin-label" id="pin-label">Enter admin PIN to delete this vehicle</div>
+    <input type="password" id="pin-input" placeholder="Enter PIN" maxlength="6"
+      oninput="this.value=this.value.replace(/\D/g,'')"
+      onkeydown="if(event.key==='Enter')confirmDelete()"
+      style="width:100%;letter-spacing:0.2em;font-size:18px;text-align:center">
+    <div class="pin-error" id="pin-error">Incorrect PIN. Try again.</div>
+    <div class="pin-actions">
+      <button class="btn-cancel" onclick="closePinModal()">Cancel</button>
+      <button class="btn-confirm" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
