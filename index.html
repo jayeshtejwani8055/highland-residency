@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highland Residency — Vehicle Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f4f0;
+    --surface: #ffffff;
+    --surface2: #f0efe9;
+    --border: rgba(0,0,0,0.1);
+    --border-md: rgba(0,0,0,0.18);
+    --text: #1a1a18;
+    --text-2: #5a5a54;
+    --text-3: #9a9a90;
+    --accent: #2a5f3f;
+    --accent-light: #e8f3ed;
+    --accent-text: #1a4028;
+    --danger: #c0392b;
+    --danger-bg: #fdf0ee;
+    --danger-text: #7a1f14;
+    --warning: #b35c00;
+    --warning-bg: #fef3e2;
+    --success: #1d6b3e;
+    --success-bg: #eaf4ee;
+    --success-text: #0f3d22;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --radius-lg: 14px;
+    --font: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+    --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141412;
+      --surface: #1e1e1a;
+      --surface2: #252520;
+      --border: rgba(255,255,255,0.08);
+      --border-md: rgba(255,255,255,0.14);
+      --text: #f0efe8;
+      --text-2: #a0a098;
+      --text-3: #606058;
+      --accent: #4a9e6a;
+      --accent-light: #1a2e22;
+      --accent-text: #8fd4a8;
+      --danger: #e05c4a;
+      --danger-bg: #2a1510;
+      --danger-text: #f0a090;
+      --success: #5aba7e;
+      --success-bg: #0f2218;
+      --success-text: #90d8a8;
+    }
+  }
+
+  html { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.5; }
+
+  body { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0 0 60px; }
+
+  /* Header */
+  .site-header {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 58px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-header h1 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .site-header h1 svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .header-badge { font-size: 11px; background: rgba(255,255,255,0.18); padding: 3px 10px; border-radius: 20px; }
+
+  /* Main container */
+  .container { width: 100%; max-width: 560px; padding: 28px 16px 0; }
+
+  /* Tabs */
+  .tabs { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 4px; margin-bottom: 22px; gap: 2px; }
+  .tab-btn { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 0; border-radius: var(--radius); background: none; border: none; font-family: var(--font); font-size: 13px; font-weight: 500; color: var(--text-2); cursor: pointer; transition: all 0.15s; }
+  .tab-btn svg { width: 15px; height: 15px; }
+  .tab-btn.active { background: var(--accent); color: #fff; }
+  .tab-btn:not(.active):hover { background: var(--surface2); color: var(--text); }
+
+  /* Sections */
+  .section { display: none; animation: fadeIn 0.18s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Cards */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 14px; }
+  .card-title { font-size: 13px; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+  .card-title svg { width: 14px; height: 14px; }
+
+  /* Search */
+  .search-row { display: flex; gap: 8px; margin-bottom: 18px; }
+  .search-row input { flex: 1; }
+  .search-row button { flex-shrink: 0; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); padding: 0 18px; font-family: var(--font); font-size: 13px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
+  .search-row button:hover { opacity: 0.88; }
+  .search-row button:active { opacity: 0.75; }
+
+  /* Inputs */
+  input, select {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--font);
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+    appearance: none;
+  }
+  input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(42,95,63,0.12); }
+  input::placeholder { color: var(--text-3); }
+  select:disabled { opacity: 0.45; cursor: not-allowed; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+
+  /* Form */
+  .form-field { margin-bottom: 14px; }
+  .form-field label { display: block; font-size: 12px; font-weight: 500; color: var(--text-2); margin-bottom: 5px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .submit-btn { width: 100%; height: 44px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); font-family: var(--font); font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.15s; margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .submit-btn:hover { opacity: 0.88; }
+  .submit-btn svg { width: 16px; height: 16px; }
+
+  /* Result cards */
+  .result-found { background: var(--success-bg); border: 1px solid rgba(30,107,62,0.2); border-radius: var(--radius-lg); padding: 18px 20px; }
+  .result-found-label { font-size: 11px; font-weight: 600; color: var(--success); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; display: flex; align-items: center; gap: 5px; }
+  .result-found-label svg { width: 13px; height: 13px; }
+  .result-not-found { background: var(--danger-bg); border: 1px solid rgba(192,57,43,0.18); border-radius: var(--radius-lg); padding: 14px 18px; font-size: 13px; color: var(--danger-text); display: flex; align-items: flex-start; gap: 8px; }
+  .result-not-found svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; color: var(--danger); }
+
+  /* Person row */
+  .person-row { display: flex; align-items: center; gap: 12px; }
+  .avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+  .person-name { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
+  .person-flat { font-size: 13px; color: var(--text-2); margin-top: 2px; }
+  .detail-row { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--text-2); margin-top: 10px; }
+  .detail-row svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .plate { display: inline-block; font-family: var(--mono); font-size: 13px; font-weight: 500; background: var(--surface); border: 1px solid var(--border-md); border-radius: var(--radius-sm); padding: 2px 9px; letter-spacing: 0.08em; color: var(--text); }
+
+  /* Vehicle list rows */
+  .veh-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--border); }
+  .veh-row:last-child { border-bottom: none; }
+  .veh-info { display: flex; align-items: center; gap: 10px; }
+  .veh-name { font-size: 14px; font-weight: 500; }
+  .veh-sub { font-size: 12px; color: var(--text-3); margin-top: 1px; }
+  .veh-right { display: flex; align-items: center; gap: 8px; }
+  .del-btn { background: none; border: 1px solid var(--border); border-radius: var(--radius-sm); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-3); transition: all 0.15s; }
+  .del-btn:hover { background: var(--danger-bg); border-color: var(--danger); color: var(--danger); }
+  .del-btn svg { width: 14px; height: 14px; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
+  .stat-val { font-size: 22px; font-weight: 600; color: var(--accent); }
+  .stat-lbl { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+
+  /* Filter row */
+  .filter-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-bottom: 14px; }
+  .filter-row select { width: auto; }
+
+  /* Toast */
+  #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--accent); color: #fff; font-size: 13px; font-weight: 500; padding: 10px 20px; border-radius: 40px; opacity: 0; transition: all 0.25s; pointer-events: none; z-index: 999; display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  #toast svg { width: 15px; height: 15px; }
+
+  /* Empty state */
+  .empty { text-align: center; padding: 36px 0; color: var(--text-3); }
+  .empty svg { width: 36px; height: 36px; margin-bottom: 10px; }
+
+  /* Avatars — colored by name hash */
+  .av-green { background: #e8f3ed; color: #1a4028; }
+  .av-blue  { background: #e6f1fb; color: #0c447c; }
+  .av-amber { background: #faeeda; color: #633806; }
+  .av-coral { background: #faece7; color: #712b13; }
+  .av-purple{ background: #eeedfe; color: #3c3489; }
+
+  /* Responsive */
+  @media (max-width: 420px) {
+    .form-grid { grid-template-columns: 1fr 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Highland Residency
+  </h1>
+  <span class="header-badge" id="hdr-count">Loading...</span>
+</header>
+
+<div class="container">
+
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" role="tab" onclick="switchTab('lookup')" aria-selected="true" id="tab-lookup-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Lookup
+    </button>
+    <button class="tab-btn" role="tab" onclick="switchTab('register')" aria-selected="false" id="tab-register-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Register
+    </button>
+    <button class="tab-btn" role="tab" onclick="switchTab('directory')" aria-selected="false" id="tab-directory-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      Directory
+    </button>
+  </div>
+
+  <!-- LOOKUP -->
+  <div id="sec-lookup" class="section active">
+    <div class="search-row">
+      <input type="text" id="lookup-input" placeholder="Enter vehicle number e.g. GJ01AB1234"
+        oninput="this.value=this.value.toUpperCase()"
+        onkeydown="if(event.key==='Enter')doLookup()">
+      <button onclick="doLookup()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;margin-right:5px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </button>
+    </div>
+    <div id="lookup-result"></div>
+
+    <div class="card" style="margin-top:18px">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Recently registered
+      </div>
+      <div id="recent-list"></div>
+    </div>
+  </div>
+
+  <!-- REGISTER -->
+  <div id="sec-register" class="section">
+    <div class="card">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Register your vehicle
+      </div>
+
+      <div class="form-field">
+        <label for="reg-name">Resident name</label>
+        <input type="text" id="reg-name" placeholder="Full name">
+      </div>
+
+      <div class="form-grid" style="margin-bottom:14px">
+        <div class="form-field" style="margin-bottom:0">
+          <label for="reg-block">Block</label>
+          <select id="reg-block">
+            <option value="">Block</option>
+            <option>A</option><option>B</option><option>C</option>
+          </select>
+        </div>
+        <div class="form-field" style="margin-bottom:0">
+          <label for="reg-floor">Floor</label>
+          <select id="reg-floor" onchange="updateFlats()">
+            <option value="">Floor</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option>
+          </select>
+        </div>
+        <div class="form-field" style="margin-bottom:0">
+          <label for="reg-flat">Flat</label>
+          <select id="reg-flat" disabled>
+            <option value="">Select floor first</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="reg-plate">Vehicle number</label>
+        <input type="text" id="reg-plate" placeholder="GJ01AB1234" oninput="this.value=this.value.toUpperCase().replace(/\s/g,'')">
+      </div>
+
+      <div class="form-field">
+        <label for="reg-type">Vehicle type</label>
+        <select id="reg-type">
+          <option value="">Select type</option>
+          <option>4 wheeler</option>
+          <option>2 wheeler</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="reg-contact">Contact number</label>
+        <input type="tel" id="reg-contact" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')">
+      </div>
+
+      <button class="submit-btn" onclick="doRegister()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Register vehicle
+      </button>
+    </div>
+  </div>
+
+  <!-- DIRECTORY -->
+  <div id="sec-directory" class="section">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-val" id="stat-total">0</div>
+        <div class="stat-lbl">Total vehicles</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val" id="stat-cars">0</div>
+        <div class="stat-lbl">4 wheelers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val" id="stat-bikes">0</div>
+        <div class="stat-lbl">2 wheelers</div>
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <input type="text" id="dir-search" placeholder="Search name or plate..." oninput="renderDirectory()">
+      <select id="dir-block" onchange="renderDirectory()" style="width:120px">
+        <option value="">All blocks</option>
+        <option>A</option><option>B</option><option>C</option>
+      </select>
+    </div>
+
+    <div class="card" style="padding:0 20px">
+      <div id="directory-list"></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAwOtAR2PcPOapwvXQoQFHXAVhgrWllb0I",
+  authDomain: "highland-residency.firebaseapp.com",
+  projectId: "highland-residency",
+  storageBucket: "highland-residency.firebasestorage.app",
+  messagingSenderId: "373949160659",
+  appId: "1:373949160659:web:f97f0db9a94f821de7c826"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const vehiclesCol = db.collection('vehicles');
+
+const AVATAR_CLASSES = ['av-green','av-blue','av-amber','av-coral','av-purple'];
+let vehicles = [];
+
+function flatLabel(v){return `Block ${v.block} · Flat ${v.flat}`;}
+function initials(n){return n.trim().split(/\s+/).map(w=>w[0]).join('').substring(0,2).toUpperCase();}
+function avClass(n){return AVATAR_CLASSES[n.charCodeAt(0)%AVATAR_CLASSES.length];}
+
+function showToast(msg, isError){
+  const t=document.getElementById('toast');
+  t.style.background = isError ? 'var(--danger)' : '';
+  t.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'+msg;
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3000);
+}
+
+function updateHeader(){
+  document.getElementById('hdr-count').textContent=vehicles.length+' vehicle'+(vehicles.length===1?'':'s')+' registered';
+}
+
+function renderRecent(){
+  const el=document.getElementById('recent-list');
+  const list=vehicles.slice().sort(function(a,b){return b.ts-a.ts;}).slice(0,4);
+  if(!list.length){
+    el.innerHTML='<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><div>No vehicles registered yet</div></div>';
+    return;
+  }
+  el.innerHTML=list.map(function(v){
+    return '<div class="veh-row"><div class="veh-info"><div class="avatar '+avClass(v.name)+'">'+initials(v.name)+'</div><div><div class="veh-name">'+v.name+'</div><div class="veh-sub">'+flatLabel(v)+'</div></div></div><span class="plate">'+v.plate+'</span></div>';
+  }).join('');
+}
+
+function doLookup(){
+  const q=document.getElementById('lookup-input').value.trim().toUpperCase().replace(/\s/g,'');
+  const el=document.getElementById('lookup-result');
+  if(!q){el.innerHTML='';return;}
+  const m=vehicles.find(function(v){return v.plate.replace(/\s/g,'')===q;});
+  if(m){
+    el.innerHTML='<div class="result-found">'
+      +'<div class="result-found-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Vehicle found</div>'
+      +'<div class="person-row"><div class="avatar '+avClass(m.name)+'" style="width:46px;height:46px;font-size:15px">'+initials(m.name)+'</div>'
+      +'<div><div class="person-name">'+m.name+'</div><div class="person-flat">'+flatLabel(m)+'</div></div></div>'
+      +'<div class="detail-row" style="margin-top:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>'+m.type+'</div>'
+      +'<div class="detail-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>'+m.contact+'</div>'
+      +'</div>';
+  } else {
+    el.innerHTML='<div class="result-not-found"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span>No vehicle found for <strong>'+q+'</strong>. Ask the owner to register on the Register tab.</span></div>';
+  }
+}
+
+function updateFlats(){
+  const floor=document.getElementById('reg-floor').value;
+  const flatSel=document.getElementById('reg-flat');
+  flatSel.value='';
+  if(!floor){
+    flatSel.innerHTML='<option value="">Select floor first</option>';
+    flatSel.disabled=true;
+    return;
+  }
+  var f=parseInt(floor);
+  flatSel.innerHTML='<option value="">Flat</option>'+[1,2,3,4].map(function(n){return '<option value="'+f+'0'+n+'">'+f+'0'+n+'</option>';}).join('');
+  flatSel.disabled=false;
+}
+
+function doRegister(){
+  const name=document.getElementById('reg-name').value.trim();
+  const block=document.getElementById('reg-block').value;
+  const floor=document.getElementById('reg-floor').value;
+  const flat=document.getElementById('reg-flat').value;
+  const plate=document.getElementById('reg-plate').value.trim().toUpperCase().replace(/\s/g,'');
+  const type=document.getElementById('reg-type').value;
+  const contact=document.getElementById('reg-contact').value.trim();
+  if(!name||!block||!floor||!flat||!plate||!type||!contact){alert('Please fill in all fields.');return;}
+  if(!/^\d{10}$/.test(contact)){alert('Please enter a valid 10-digit mobile number.');return;}
+  if(vehicles.find(function(v){return v.plate===plate;})){alert('This vehicle number is already registered.');return;}
+
+  const btn=document.querySelector('.submit-btn');
+  btn.disabled=true;
+  btn.textContent='Saving...';
+
+  vehiclesCol.add({name:name, block:block, floor:floor, flat:flat, plate:plate, type:type, contact:contact, ts:Date.now()})
+    .then(function(){
+      ['reg-name','reg-plate','reg-contact'].forEach(function(id){document.getElementById(id).value='';});
+      ['reg-block','reg-floor','reg-type'].forEach(function(id){document.getElementById(id).value='';});
+      document.getElementById('reg-flat').innerHTML='<option value="">Select floor first</option>';
+      document.getElementById('reg-flat').disabled=true;
+      showToast('Vehicle registered successfully!');
+      switchTab('lookup');
+    })
+    .catch(function(){
+      showToast('Error saving. Check your internet connection.', true);
+    })
+    .finally(function(){
+      btn.disabled=false;
+      btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Register vehicle';
+    });
+}
+
+function deleteVehicle(docId, name){
+  if(!confirm('Remove '+name+"'s vehicle from the registry?"))return;
+  vehiclesCol.doc(docId).delete()
+    .then(function(){showToast('Vehicle removed.');})
+    .catch(function(){showToast('Error removing. Try again.', true);});
+}
+
+function renderDirectory(){
+  const q=document.getElementById('dir-search').value.toLowerCase();
+  const bl=document.getElementById('dir-block').value;
+  var list=vehicles.filter(function(v){
+    var mq=!q||v.name.toLowerCase().includes(q)||v.plate.toLowerCase().includes(q);
+    var mb=!bl||v.block===bl;
+    return mq&&mb;
+  }).sort(function(a,b){
+    return a.block.localeCompare(b.block)||+a.floor-+b.floor||a.flat.localeCompare(b.flat);
+  });
+
+  const el=document.getElementById('directory-list');
+  if(!list.length){
+    el.innerHTML='<div class="empty" style="padding:30px 0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><div>No results found</div></div>';
+  } else {
+    el.innerHTML=list.map(function(v){
+      return '<div class="veh-row"><div class="veh-info"><div class="avatar '+avClass(v.name)+'">'+initials(v.name)+'</div><div><div class="veh-name">'+v.name+'</div><div class="veh-sub">'+flatLabel(v)+' · '+v.type+'</div></div></div>'
+        +'<div class="vr-right" style="display:flex;align-items:center;gap:8px"><span class="plate">'+v.plate+'</span>'
+        +'<button class="del-btn" onclick="deleteVehicle(\''+v.id+'\',\''+v.name+'\')" title="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>'
+        +'</div></div>';
+    }).join('');
+  }
+
+  document.getElementById('stat-total').textContent=vehicles.length;
+  document.getElementById('stat-cars').textContent=vehicles.filter(function(v){return v.type==='4 wheeler';}).length;
+  document.getElementById('stat-bikes').textContent=vehicles.filter(function(v){return v.type==='2 wheeler';}).length;
+}
+
+function switchTab(id){
+  ['lookup','register','directory'].forEach(function(t){
+    document.getElementById('sec-'+t).classList.toggle('active',t===id);
+    var btn=document.getElementById('tab-'+t+'-btn');
+    btn.classList.toggle('active',t===id);
+    btn.setAttribute('aria-selected',t===id);
+  });
+  if(id==='directory')renderDirectory();
+}
+
+document.getElementById('hdr-count').textContent='Connecting...';
+
+vehiclesCol.onSnapshot(function(snapshot){
+  vehicles=snapshot.docs.map(function(d){return Object.assign({id:d.id},d.data());});
+  updateHeader();
+  renderRecent();
+  renderDirectory();
+}, function(err){
+  document.getElementById('hdr-count').textContent='Connection error';
+  console.error(err);
+});
+
+</script>
+</body>
+</html>
