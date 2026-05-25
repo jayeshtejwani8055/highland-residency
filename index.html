@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Highland Residency - Vehicle Registry</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&family=Noto+Sans+Gujarati:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -123,6 +123,11 @@ select:disabled{opacity:.45;cursor:not-allowed}
 .modal-body{padding:16px 18px}
 .modal-info-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
 @media(max-width:420px){.form-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}}
+
+.lang-switcher{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.15);border-radius:20px;padding:3px}
+.lang-btn{background:none;border:none;color:rgba(255,255,255,0.75);font-family:var(--font);font-size:11px;font-weight:500;padding:3px 8px;border-radius:16px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.lang-btn.active{background:rgba(255,255,255,0.25);color:#fff}
+.lang-btn:hover:not(.active){color:#fff}
 </style>
 </head>
 <body>
@@ -132,23 +137,26 @@ select:disabled{opacity:.45;cursor:not-allowed}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     Highland Residency
   </h1>
-  <span class="header-badge" id="hdr-count">Connecting...</span>
+  <div style="display:flex;align-items:center;gap:8px">
+    <span class="header-badge" id="hdr-count">Connecting...</span>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('gu')">ગુ</button>
+      <button class="lang-btn" onclick="setLang('hi')">हि</button>
+    </div>
+  </div>
 </header>
 
 <div class="container">
   <div class="tabs" role="tablist">
     <button class="tab-btn active" id="tab-lookup-btn" onclick="switchTab('lookup')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Lookup
-    </button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span data-i18n="tab_lookup">Lookup</span></button>
     <button class="tab-btn" id="tab-register-btn" onclick="switchTab('register')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Register
-    </button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span data-i18n="tab_register">Register</span></button>
     <button class="tab-btn" id="tab-directory-btn" onclick="switchTab('directory')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>Directory
-    </button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><span data-i18n="tab_directory">Directory</span></button>
     <button class="tab-btn" id="tab-report-btn" onclick="switchTab('report')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Reports
-    </button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span data-i18n="tab_reports">Reports</span></button>
   </div>
 
   <!-- LOOKUP -->
@@ -196,17 +204,16 @@ select:disabled{opacity:.45;cursor:not-allowed}
       </div>
       <div class="form-field"><label>Contact number</label><input type="tel" id="reg-contact" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"></div>
       <button class="submit-btn" id="reg-btn" onclick="doRegister()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Register vehicle
-      </button>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="reg_btn">Register vehicle</span></button>
     </div>
   </div>
 
   <!-- DIRECTORY -->
   <div id="sec-directory" class="section">
     <div class="stats">
-      <div class="stat"><div class="stat-val" id="stat-total">0</div><div class="stat-lbl">Total vehicles</div></div>
-      <div class="stat"><div class="stat-val" id="stat-cars">0</div><div class="stat-lbl">4 wheelers</div></div>
-      <div class="stat"><div class="stat-val" id="stat-bikes">0</div><div class="stat-lbl">2 wheelers</div></div>
+      <div class="stat"><div class="stat-val" id="stat-total">0</div><div class="stat-lbl" data-i18n="stat_total">Total vehicles</div></div>
+      <div class="stat"><div class="stat-val" id="stat-cars">0</div><div class="stat-lbl" data-i18n="stat_cars">4 wheelers</div></div>
+      <div class="stat"><div class="stat-val" id="stat-bikes">0</div><div class="stat-lbl" data-i18n="stat_bikes">2 wheelers</div></div>
     </div>
     <div class="filter-row">
       <input type="text" id="dir-search" placeholder="Search name or plate..." oninput="renderDirectory()">
@@ -310,6 +317,200 @@ select:disabled{opacity:.45;cursor:not-allowed}
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
+// ── i18n ──────────────────────────────────────────────────────────────────────
+var LANGS = {
+  en: {
+    tab_lookup:'Lookup', tab_register:'Register', tab_directory:'Directory', tab_reports:'Reports',
+    recent_registered:'Recently registered', register_title:'Register your vehicle', complaint_history:'Complaint history',
+    stat_total:'Total vehicles', stat_cars:'4 wheelers', stat_bikes:'2 wheelers',
+    hdr_connecting:'Connecting...', hdr_vehicles:' vehicle registered', hdr_vehicles_pl:' vehicles registered',
+    search_placeholder:'Enter vehicle number e.g. GJ01AB1234', search_btn:'Search',
+    lbl_name:'Resident name', lbl_block:'Block', lbl_floor:'Floor', lbl_flat:'Flat',
+    lbl_plate:'Vehicle number', lbl_type:'Vehicle type', lbl_contact:'Contact number',
+    lbl_issue:'Issue', lbl_location:'Parking location', lbl_reporter:'Your flat (reporter)',
+    ph_name:'Full name', ph_plate:'GJ01AB1234', ph_contact:'10-digit mobile number',
+    ph_location:'e.g. Block A basement, near gate 2', ph_reporter:'e.g. A203', ph_search:'Search name or plate...',
+    ph_floor:'Floor', ph_flat:'Select floor first', ph_flat_ready:'Flat', ph_block:'Block',
+    opt_type_default:'Select type', opt_4w:'4 wheeler', opt_2w:'2 wheeler', opt_other:'Other',
+    opt_issue_default:'Select issue', opt_block_all:'All blocks',
+    opt_issues:['Blocking another vehicle','Parked in wrong spot','Blocking entrance / gate','Parked in no-parking zone','Double parked','Other'],
+    reg_btn:'Register vehicle', reg_saving:'Saving...',
+    found_label:'Vehicle found', call_btn:'Call owner', wa_btn:'WhatsApp',
+    report_btn:'Report bad parking', alert_btn:'Alert society WhatsApp group',
+    not_found:'No vehicle found for', not_found2:'. This vehicle is not registered.',
+    ask_register:'Ask the owner to register on the Register tab.',
+    no_vehicles:'No vehicles registered yet', no_results:'No results', no_complaints:'No complaints yet',
+    toast_registered:'Vehicle registered successfully!', toast_removed:'Vehicle removed.',
+    toast_complaint_logged:'Complaint logged!', toast_complaint_removed:'Complaint removed.',
+    toast_error_save:'Error saving. Check your connection.',
+    toast_error_remove:'Error removing. Try again.',
+    toast_error_log:'Error logging. Check Firestore rules.',
+    toast_group_opened:'Group opened! Message copied — paste and send.',
+    pin_wrong:'Incorrect PIN. Try again.',
+    pin_label_vehicle:"Enter admin PIN to remove {name}'s vehicle.",
+    pin_label_complaint:'Enter admin PIN to delete this complaint record.',
+    pin_cancel:'Cancel', pin_delete:'Delete',
+    modal_report_title:'Report bad parking',
+    cm_vehicle:'Vehicle', cm_owner:'Owner',
+    admin_verify:'Admin verification',
+    complaint_reported_by:'Reported by Flat',
+    veh_count:' vehicle', veh_count_pl:' vehicles',
+    wheel_4:'4 Wheeler', wheel_2:'2 Wheeler', wheel_other:'Other',
+    connection_error:'Connection error',
+    wa_msg_unregistered:'Attention Highland Residency residents, vehicle *{plate}* was found badly parked and is NOT registered in our system. If this is your vehicle, please register it and move it immediately.',
+    wa_msg_owner:'Hello {name}, your vehicle {plate} has been reported for: {issue}.{loc} Please move it at the earliest.{by}',
+  },
+  gu: {
+    tab_lookup:'શોધો', tab_register:'નોંધણી', tab_directory:'યાદી', tab_reports:'ફરિયાદ',
+    recent_registered:'તાજેતરમાં નોંધાયેલ', register_title:'તમારું વાહન નોંધો', complaint_history:'ફરિયાદ ઇતિહાસ',
+    stat_total:'કુલ વાહન', stat_cars:'4 પૈડાં', stat_bikes:'2 પૈડાં',
+    hdr_connecting:'જોડાઈ રહ્યું છે...', hdr_vehicles:' વાહન નોંધાયેલ', hdr_vehicles_pl:' વાહન નોંધાયેલ',
+    search_placeholder:'વાહન નંબર દાખલ કરો, દા.ત. GJ01AB1234', search_btn:'શોધો',
+    lbl_name:'રહેવાસીનું નામ', lbl_block:'બ્લોક', lbl_floor:'માળ', lbl_flat:'ફ્લેટ',
+    lbl_plate:'વાહન નંબર', lbl_type:'વાહનનો પ્રકાર', lbl_contact:'સંપર્ક નંબર',
+    lbl_issue:'સમસ્યા', lbl_location:'પાર્કિંગ સ્થાન', lbl_reporter:'તમારો ફ્લેટ',
+    ph_name:'પૂરું નામ', ph_plate:'GJ01AB1234', ph_contact:'10 અંકનો મોબાઇલ નંબર',
+    ph_location:'દા.ત. બ્લોક A બેઝમેન્ટ, ગેટ 2 પાસે', ph_reporter:'દા.ત. A203', ph_search:'નામ અથવા પ્લેટ શોધો...',
+    ph_floor:'માળ', ph_flat:'પહેલાં માળ પસંદ કરો', ph_flat_ready:'ફ્લેટ', ph_block:'બ્લોક',
+    opt_type_default:'પ્રકાર પસંદ કરો', opt_4w:'4 પૈડાં', opt_2w:'2 પૈડાં', opt_other:'અન્ય',
+    opt_issue_default:'સમસ્યા પસંદ કરો', opt_block_all:'બધા બ્લોક',
+    opt_issues:['બીજા વાહનને અવરોધ','ખોટી જગ્યાએ પાર્ક','પ્રવેશ/ગેટ બ્લોક','નો-પાર્કિંગ ઝોન','ડબલ પાર્ક','અન્ય'],
+    reg_btn:'વાહન નોંધો', reg_saving:'સાચવી રહ્યું છે...',
+    found_label:'વાહન મળ્યું', call_btn:'માલિકને કૉલ કરો', wa_btn:'WhatsApp',
+    report_btn:'ખોટી પાર્કિંગ જણાવો', alert_btn:'સોસાયટી ગ્રૂપને જણાવો',
+    not_found:'માટે કોઈ વાહન મળ્યું નથી', not_found2:'. આ વાહન નોંધાયેલ નથી.',
+    ask_register:'માલિકને Register ટૅબ પર નોંધણી કરવા કહો.',
+    no_vehicles:'હજુ સુધી કોઈ વાહન નોંધાયું નથી', no_results:'કોઈ પરિણામ નથી', no_complaints:'હજુ કોઈ ફરિયાદ નથી',
+    toast_registered:'વાહન સફળતાપૂર્વક નોંધાયું!', toast_removed:'વાહન દૂર થયું.',
+    toast_complaint_logged:'ફરિયાદ નોંધાઈ!', toast_complaint_removed:'ફરિયાદ દૂર થઈ.',
+    toast_error_save:'સાચવવામાં ભૂલ. કનેક્શન તપાસો.',
+    toast_error_remove:'દૂર કરવામાં ભૂલ. ફરી પ્રયાસ કરો.',
+    toast_error_log:'નોંધવામાં ભૂલ. Firestore rules તપાસો.',
+    toast_group_opened:'ગ્રૂપ ખુલ્યું! સંદેશ copy થયો — paste કરી send કરો.',
+    pin_wrong:'ખોટો PIN. ફરી પ્રયાસ કરો.',
+    pin_label_vehicle:'{name}નું વાહન દૂર કરવા admin PIN દાખલ કરો.',
+    pin_label_complaint:'આ ફરિયાદ રેકોર્ડ ડિલીટ કરવા admin PIN દાખલ કરો.',
+    pin_cancel:'રદ કરો', pin_delete:'ડિલીટ કરો',
+    modal_report_title:'ખોટી પાર્કિંગ જણાવો',
+    cm_vehicle:'વાહન', cm_owner:'માલિક',
+    admin_verify:'Admin ચકાસણી',
+    complaint_reported_by:'ફ્લેટ દ્વારા જણાવ્યું',
+    veh_count:' વાહન', veh_count_pl:' વાહન',
+    wheel_4:'4 પૈડાં', wheel_2:'2 પૈડાં', wheel_other:'અન્ય',
+    connection_error:'કનેક્શન ભૂલ',
+    wa_msg_unregistered:'Highland Residency ના તમામ સભ્યો, વાહન *{plate}* ખોટી જગ્યાએ પાર્ક છે અને આપણી સિસ્ટમમાં નોંધાયેલ નથી. જો આ તમારું વાહન હોય, તો તરત ખસેડો.',
+    wa_msg_owner:'નમસ્કાર {name}, તમારું વાહન {plate} આ કારણ માટે ફરિયાદ થઈ: {issue}.{loc} કૃપા કરી તરત ખસેડો.{by}',
+  },
+  hi: {
+    tab_lookup:'खोजें', tab_register:'पंजीकरण', tab_directory:'सूची', tab_reports:'शिकायत',
+    recent_registered:'हाल में पंजीकृत', register_title:'अपना वाहन पंजीकृत करें', complaint_history:'शिकायत इतिहास',
+    stat_total:'कुल वाहन', stat_cars:'4 पहिया', stat_bikes:'2 पहिया',
+    hdr_connecting:'जुड़ रहा है...', hdr_vehicles:' वाहन पंजीकृत', hdr_vehicles_pl:' वाहन पंजीकृत',
+    search_placeholder:'वाहन नंबर दर्ज करें, जैसे GJ01AB1234', search_btn:'खोजें',
+    lbl_name:'निवासी का नाम', lbl_block:'ब्लॉक', lbl_floor:'मंजिल', lbl_flat:'फ्लैट',
+    lbl_plate:'वाहन नंबर', lbl_type:'वाहन का प्रकार', lbl_contact:'संपर्क नंबर',
+    lbl_issue:'समस्या', lbl_location:'पार्किंग स्थान', lbl_reporter:'आपका फ्लैट',
+    ph_name:'पूरा नाम', ph_plate:'GJ01AB1234', ph_contact:'10 अंकों का मोबाइल नंबर',
+    ph_location:'जैसे ब्लॉक A बेसमेंट, गेट 2 के पास', ph_reporter:'जैसे A203', ph_search:'नाम या प्लेट खोजें...',
+    ph_floor:'मंजिल', ph_flat:'पहले मंजिल चुनें', ph_flat_ready:'फ्लैट', ph_block:'ब्लॉक',
+    opt_type_default:'प्रकार चुनें', opt_4w:'4 पहिया', opt_2w:'2 पहिया', opt_other:'अन्य',
+    opt_issue_default:'समस्या चुनें', opt_block_all:'सभी ब्लॉक',
+    opt_issues:['दूसरे वाहन को रोक रहा है','गलत जगह पार्क','प्रवेश/गेट बंद','नो-पार्किंग ज़ोन','डबल पार्क','अन्य'],
+    reg_btn:'वाहन पंजीकृत करें', reg_saving:'सहेजा जा रहा है...',
+    found_label:'वाहन मिला', call_btn:'मालिक को कॉल करें', wa_btn:'WhatsApp',
+    report_btn:'गलत पार्किंग रिपोर्ट करें', alert_btn:'सोसायटी ग्रुप को सूचित करें',
+    not_found:'के लिए कोई वाहन नहीं मिला', not_found2:'. यह वाहन पंजीकृत नहीं है।',
+    ask_register:'मालिक को Register टैब पर पंजीकरण करने को कहें।',
+    no_vehicles:'अभी तक कोई वाहन पंजीकृत नहीं', no_results:'कोई परिणाम नहीं', no_complaints:'अभी कोई शिकायत नहीं',
+    toast_registered:'वाहन सफलतापूर्वक पंजीकृत!', toast_removed:'वाहन हटाया गया।',
+    toast_complaint_logged:'शिकायत दर्ज!', toast_complaint_removed:'शिकायत हटाई गई।',
+    toast_error_save:'सहेजने में त्रुटि। कनेक्शन जांचें।',
+    toast_error_remove:'हटाने में त्रुटि। पुनः प्रयास करें।',
+    toast_error_log:'दर्ज करने में त्रुटि। Firestore rules जांचें।',
+    toast_group_opened:'ग्रुप खुला! संदेश कॉपी हुआ — paste करके send करें।',
+    pin_wrong:'गलत PIN। पुनः प्रयास करें।',
+    pin_label_vehicle:'{name} का वाहन हटाने के लिए admin PIN दर्ज करें।',
+    pin_label_complaint:'यह शिकायत रिकॉर्ड हटाने के लिए admin PIN दर्ज करें।',
+    pin_cancel:'रद्द करें', pin_delete:'हटाएं',
+    modal_report_title:'गलत पार्किंग रिपोर्ट करें',
+    cm_vehicle:'वाहन', cm_owner:'मालिक',
+    admin_verify:'Admin सत्यापन',
+    complaint_reported_by:'फ्लैट द्वारा रिपोर्ट',
+    veh_count:' वाहन', veh_count_pl:' वाहन',
+    wheel_4:'4 पहिया', wheel_2:'2 पहिया', wheel_other:'अन्य',
+    connection_error:'कनेक्शन त्रुटि',
+    wa_msg_unregistered:'Highland Residency के सभी सदस्य, वाहन *{plate}* गलत जगह पार्क है और हमारे सिस्टम में पंजीकृत नहीं है। अगर यह आपका वाहन है तो तुरंत हटाएं।',
+    wa_msg_owner:'नमस्ते {name}, आपका वाहन {plate} इस कारण से रिपोर्ट हुआ: {issue}.{loc} कृपया तुरंत हटाएं।{by}',
+  }
+};
+
+var currentLang = 'en';
+
+function t(key){ return (LANGS[currentLang] && LANGS[currentLang][key]) || LANGS.en[key] || key; }
+
+function setLang(lang){
+  currentLang = lang;
+  // Update font for Gujarati
+  document.body.style.fontFamily = lang === 'gu' ? "'Noto Sans Gujarati', sans-serif" : lang === 'hi' ? "'Noto Sans Devanagari', sans-serif" : "'DM Sans', sans-serif";
+  // Update lang buttons
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.classList.toggle('active', btn.textContent.trim() === (lang === 'en' ? 'EN' : lang === 'gu' ? 'ગુ' : 'हि'));
+  });
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    el.textContent = t(el.getAttribute('data-i18n'));
+  });
+  // Update dynamic elements
+  updateHeader();
+  updatePlaceholders();
+  updateSelectOptions();
+  // Re-render active tab content
+  var activeTab = document.querySelector('.tab-btn.active');
+  if(activeTab){
+    var id = activeTab.id.replace('tab-','').replace('-btn','');
+    if(id === 'directory') renderDirectory();
+    if(id === 'report') renderComplaints();
+    if(id === 'lookup'){ renderRecent(); }
+  }
+}
+
+function updatePlaceholders(){
+  var map = {
+    'lookup-input': 'search_placeholder',
+    'reg-name': 'ph_name', 'reg-plate': 'ph_plate', 'reg-contact': 'ph_contact',
+    'dir-search': 'ph_search', 'cm-location': 'ph_location', 'cm-by': 'ph_reporter'
+  };
+  Object.keys(map).forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.placeholder = t(map[id]);
+  });
+  // Floor/flat/block selects - first options
+  var regFloor = document.getElementById('reg-floor');
+  if(regFloor && regFloor.options[0]) regFloor.options[0].textContent = t('ph_floor');
+  var regBlock = document.getElementById('reg-block');
+  if(regBlock && regBlock.options[0]) regBlock.options[0].textContent = t('ph_block');
+  var regFlat = document.getElementById('reg-flat');
+  if(regFlat && regFlat.options[0]) regFlat.options[0].textContent = regFlat.disabled ? t('ph_flat') : t('ph_flat_ready');
+}
+
+function updateSelectOptions(){
+  // reg-type
+  var rt = document.getElementById('reg-type');
+  if(rt){ rt.options[0].textContent = t('opt_type_default'); rt.options[1].textContent = t('opt_4w'); rt.options[2].textContent = t('opt_2w'); rt.options[3].textContent = t('opt_other'); }
+  // cm-issue
+  ['cm-issue'].forEach(function(sid){
+    var sel = document.getElementById(sid);
+    if(!sel) return;
+    sel.options[0].textContent = t('opt_issue_default');
+    var issues = t('opt_issues');
+    for(var i=0;i<issues.length;i++){ if(sel.options[i+1]) sel.options[i+1].textContent = issues[i]; }
+  });
+  // dir-block
+  var db = document.getElementById('dir-block');
+  if(db && db.options[0]) db.options[0].textContent = t('opt_block_all');
+}
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyAwOtAR2PcPOapwvXQoQFHXAVhgrWllb0I",
   authDomain: "highland-residency.firebaseapp.com",
@@ -357,7 +558,8 @@ function switchTab(id){
 }
 
 function updateHeader(){
-  document.getElementById('hdr-count').textContent = vehicles.length + ' vehicle' + (vehicles.length === 1 ? '' : 's') + ' registered';
+  var n = vehicles.length;
+  document.getElementById('hdr-count').textContent = n + (n === 1 ? t('hdr_vehicles') : t('hdr_vehicles_pl'));
 }
 
 function renderRecent(){
@@ -426,18 +628,18 @@ function doRegister(){
   if(!/^\d{10}$/.test(contact)){ alert('Please enter a valid 10-digit mobile number.'); return; }
   if(vehicles.find(function(v){ return v.plate === plate; })){ alert('This vehicle number is already registered.'); return; }
   var btn = document.getElementById('reg-btn');
-  btn.disabled = true; btn.textContent = 'Saving...';
+  btn.disabled = true; btn.querySelector('[data-i18n]').textContent = t('reg_saving');
   vehiclesCol.add({name:name, block:block, floor:floor, flat:flat, plate:plate, type:type, contact:contact, ts:Date.now()})
     .then(function(){
       ['reg-name','reg-plate','reg-contact'].forEach(function(id){ document.getElementById(id).value = ''; });
       ['reg-block','reg-floor','reg-type'].forEach(function(id){ document.getElementById(id).value = ''; });
       document.getElementById('reg-flat').innerHTML = '<option value="">Select floor first</option>';
       document.getElementById('reg-flat').disabled = true;
-      showToast('Vehicle registered successfully!');
+      showToast(t('toast_registered'));
       switchTab('lookup');
     })
-    .catch(function(){ showToast('Error saving. Check your connection.', true); })
-    .finally(function(){ btn.disabled = false; btn.textContent = 'Register vehicle'; });
+    .catch(function(){ showToast(t('toast_error_save'), true); })
+    .finally(function(){ btn.disabled = false; btn.querySelector('[data-i18n]').textContent = t('reg_btn'); });
 }
 
 var delSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>';
@@ -483,7 +685,7 @@ function renderDirectory(){
 
 function askDeleteVehicle(docId, name){
   pendingDeleteVehicleId = docId;
-  document.getElementById('pin-label').textContent = 'Enter admin PIN to remove ' + name + "'s vehicle.";
+  document.getElementById('pin-label').textContent = t('pin_label_vehicle').replace('{name}', name);
   document.getElementById('pin-input').value = '';
   document.getElementById('pin-error').style.display = 'none';
   openModal('pin-modal');
@@ -491,13 +693,13 @@ function askDeleteVehicle(docId, name){
 }
 function confirmDelete(){
   if(document.getElementById('pin-input').value.trim() !== ADMIN_PIN){
-    document.getElementById('pin-error').style.display = 'block';
+    document.getElementById('pin-error').textContent = t('pin_wrong'); document.getElementById('pin-error').style.display = 'block';
     document.getElementById('pin-input').value = ''; return;
   }
   closeModal('pin-modal');
   vehiclesCol.doc(pendingDeleteVehicleId).delete()
-    .then(function(){ showToast('Vehicle removed.'); })
-    .catch(function(){ showToast('Error removing. Try again.', true); });
+    .then(function(){ showToast(t('toast_removed')); })
+    .catch(function(){ showToast(t('toast_error_remove'), true); });
   pendingDeleteVehicleId = null;
 }
 
@@ -515,8 +717,13 @@ function cmWhatsApp(){
   var issue = document.getElementById('cm-issue').value;
   var loc = document.getElementById('cm-location').value.trim();
   var by = document.getElementById('cm-by').value.trim();
-  if(!issue){ alert('Please select an issue.'); return; }
-  var msg = 'Hello ' + _cmOwner.split(' ')[0] + ', your vehicle ' + _cmPlate + ' has been reported for: ' + issue + '.' + (loc ? ' Location: ' + loc + '.' : '') + ' Please move it at the earliest.' + (by ? ' - Reported by Flat ' + by : '');
+  if(!issue){ alert(t('opt_issue_default')); return; }
+  var msg = t('wa_msg_owner')
+    .replace('{name}', _cmOwner.split(' ')[0])
+    .replace('{plate}', _cmPlate)
+    .replace('{issue}', issue)
+    .replace('{loc}', loc ? ' Location: ' + loc + '.' : '')
+    .replace('{by}', by ? ' - Reported by Flat ' + by : '');
   window.open('https://wa.me/91' + _cmContact + '?text=' + encodeURIComponent(msg), '_blank');
 }
 function cmLogComplaint(){
@@ -525,8 +732,8 @@ function cmLogComplaint(){
   var by = document.getElementById('cm-by').value.trim();
   if(!issue || !by){ alert('Please select an issue and enter your flat.'); return; }
   complaintsCol.add({plate:_cmPlate, ownerName:_cmOwner, ownerFlat:_cmFlat, issue:issue, location:loc, reportedBy:by, registered:true, ts:Date.now()})
-    .then(function(){ closeModal('complaint-modal'); showToast('Complaint logged!'); })
-    .catch(function(){ showToast('Error logging. Check Firestore rules.', true); });
+    .then(function(){ closeModal('complaint-modal'); showToast(t('toast_complaint_logged')); })
+    .catch(function(){ showToast(t('toast_error_log'), true); });
 }
 
 function askDeleteComplaint(id){
@@ -538,13 +745,13 @@ function askDeleteComplaint(id){
 }
 function confirmDeleteComplaint(){
   if(document.getElementById('cpin-input').value.trim() !== ADMIN_PIN){
-    document.getElementById('cpin-error').style.display = 'block';
+    document.getElementById('cpin-error').textContent = t('pin_wrong'); document.getElementById('cpin-error').style.display = 'block';
     document.getElementById('cpin-input').value = ''; return;
   }
   closeModal('cpin-modal');
   complaintsCol.doc(pendingDeleteComplaintId).delete()
-    .then(function(){ showToast('Complaint removed.'); })
-    .catch(function(){ showToast('Error removing. Try again.', true); });
+    .then(function(){ showToast(t('toast_complaint_removed')); })
+    .catch(function(){ showToast(t('toast_error_remove'), true); });
   pendingDeleteComplaintId = null;
 }
 
@@ -575,7 +782,7 @@ function renderComplaints(){
 
 var _unreportedPlate = '';
 function alertSocietyGroup(){
-  var msg = 'Attention Highland Residency residents, vehicle *' + _unreportedPlate + '* was found badly parked and is NOT registered in our system. If this is your vehicle, please register it and move it immediately.';
+  var msg = t('wa_msg_unregistered').replace('{plate}', _unreportedPlate);
   window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
 }
 
@@ -583,12 +790,15 @@ vehiclesCol.onSnapshot(function(snap){
   vehicles = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
   updateHeader(); renderRecent();
   if(document.getElementById('tab-directory-btn').classList.contains('active')) renderDirectory();
-}, function(){ document.getElementById('hdr-count').textContent = 'Connection error'; });
+}, function(){ document.getElementById('hdr-count').textContent = t('connection_error'); });
 
 complaintsCol.onSnapshot(function(snap){
   complaints = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
   if(document.getElementById('tab-report-btn').classList.contains('active')) renderComplaints();
 }, function(e){ console.error(e); });
+
+// Init language
+setLang('en');
 </script>
 </body>
 </html>
