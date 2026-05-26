@@ -200,7 +200,7 @@ select:disabled{opacity:.45;cursor:not-allowed}
       </div>
       <div class="form-field"><label>Vehicle number</label><input type="text" id="reg-plate" placeholder="GJ01AB1234" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')"></div>
       <div class="form-field"><label>Vehicle type</label>
-        <select id="reg-type"><option value="">Select type</option><option>4 wheeler</option><option>2 wheeler</option><option>Other</option></select>
+        <select id="reg-type"><option value="">Select type</option><option value="4 wheeler">4 wheeler</option><option value="2 wheeler">2 wheeler</option><option value="Other">Other</option></select>
       </div>
       <div class="form-field"><label>Contact number</label><input type="tel" id="reg-contact" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"></div>
       <button class="submit-btn" id="reg-btn" onclick="doRegister()">
@@ -254,7 +254,7 @@ select:disabled{opacity:.45;cursor:not-allowed}
         <div style="text-align:right"><div style="font-size:11px;color:var(--text-3);margin-bottom:2px">Owner</div><div id="cm-owner" style="font-size:13px;font-weight:500"></div><div id="cm-flat" style="font-size:11px;color:var(--text-3)"></div></div>
       </div>
       <div class="form-field"><label>Issue</label>
-        <select id="cm-issue"><option value="">Select issue</option><option>Blocking another vehicle</option><option>Parked in wrong spot</option><option>Blocking entrance / gate</option><option>Parked in no-parking zone</option><option>Double parked</option><option>Other</option></select>
+        <select id="cm-issue"><option value="">Select issue</option><option value="Blocking another vehicle">Blocking another vehicle</option><option value="Parked in wrong spot">Parked in wrong spot</option><option value="Blocking entrance / gate">Blocking entrance / gate</option><option value="Parked in no-parking zone">Parked in no-parking zone</option><option value="Double parked">Double parked</option><option value="Other">Other</option></select>
       </div>
       <div class="form-field"><label>Parking location</label><input type="text" id="cm-location" placeholder="e.g. Block A basement, near gate 2"></div>
       <div class="form-field"><label>Your flat (reporter)</label><input type="text" id="cm-by" placeholder="e.g. A203"></div>
