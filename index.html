@@ -15,7 +15,7 @@
   --warning:#b35c00;--warning-bg:#fef3e2;--warning-text:#633806;
   --success:#1d6b3e;--success-bg:#eaf4ee;--success-text:#0f3d22;
   --radius:10px;--radius-sm:6px;--radius-lg:14px;
-  --font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+  --font:"DM Sans",sans-serif;--mono:"DM Mono",monospace;
 }
 @media(prefers-color-scheme:dark){:root{
   --bg:#141412;--surface:#1e1e1a;--surface2:#252520;--border:rgba(255,255,255,0.08);--border-md:rgba(255,255,255,0.14);
@@ -27,20 +27,23 @@
 }}
 html,body{min-height:100vh;font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;line-height:1.5}
 body{display:flex;flex-direction:column;align-items:center;padding-bottom:60px}
-.site-header{width:100%;background:var(--accent);color:#fff;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:10}
-.site-header h1{font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
-.header-badge{font-size:11px;background:rgba(255,255,255,0.18);padding:3px 10px;border-radius:20px;white-space:nowrap}
+.site-header{width:100%;background:var(--accent);color:#fff;padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:10}
+.site-header h1{font-size:14px;font-weight:600;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.header-badge{font-size:11px;background:rgba(255,255,255,0.18);padding:3px 8px;border-radius:20px;white-space:nowrap}
+.lang-switcher{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,0.15);border-radius:20px;padding:3px}
+.lang-btn{background:none;border:none;color:rgba(255,255,255,0.75);font-family:var(--font);font-size:11px;font-weight:500;padding:3px 7px;border-radius:16px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.lang-btn.active{background:rgba(255,255,255,0.25);color:#fff}
 .container{width:100%;max-width:560px;padding:24px 16px 0}
 .tabs{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:4px;margin-bottom:22px;gap:2px}
-.tab-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;padding:9px 6px;border-radius:var(--radius);background:none;border:none;font-family:var(--font);font-size:12px;font-weight:500;color:var(--text-2);cursor:pointer;transition:all .15s;white-space:nowrap}
+.tab-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;padding:9px 4px;border-radius:var(--radius);background:none;border:none;font-family:var(--font);font-size:12px;font-weight:500;color:var(--text-2);cursor:pointer;transition:all .15s;white-space:nowrap}
 .tab-btn.active{background:var(--accent);color:#fff}
 .tab-btn:not(.active):hover{background:var(--surface2);color:var(--text)}
-.tab-btn svg{width:14px;height:14px;flex-shrink:0}
+.tab-btn svg{width:13px;height:13px;flex-shrink:0}
 .section{display:none}
 .section.active{display:block}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:14px}
-.card-title{font-size:12px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px;display:flex;align-items:center;gap:6px}
-.card-title svg{width:13px;height:13px}
+.card-title{font-size:12px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.card-title svg{width:13px;height:13px;flex-shrink:0}
 .form-field{margin-bottom:13px}
 .form-field label{display:block;font-size:12px;font-weight:500;color:var(--text-2);margin-bottom:5px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:13px}
@@ -54,7 +57,7 @@ select:disabled{opacity:.45;cursor:not-allowed}
 .submit-btn svg{width:16px;height:16px}
 .search-row{display:flex;gap:8px;margin-bottom:18px}
 .search-row input{flex:1}
-.search-row button{flex-shrink:0;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);padding:0 18px;font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px}
+.search-row button{flex-shrink:0;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);padding:0 16px;font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap}
 .result-found{border:1px solid rgba(30,107,62,0.25);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:16px}
 .result-found-header{background:var(--success-bg);padding:9px 16px;font-size:11px;font-weight:600;color:var(--success);text-transform:uppercase;letter-spacing:.07em;display:flex;align-items:center;gap:6px}
 .result-found-body{background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:12px}
@@ -69,7 +72,7 @@ select:disabled{opacity:.45;cursor:not-allowed}
 .result-btn-call{background:var(--surface);color:var(--text)}
 .result-btn-wa{background:#25d366;border-color:#1eb558;color:#fff}
 .result-btn-report{background:var(--danger-bg);color:var(--danger);border-color:var(--danger);width:100%}
-.result-not-found{background:var(--danger-bg);border:1px solid rgba(192,57,43,0.18);border-radius:var(--radius-lg);padding:14px 18px;font-size:13px;color:var(--danger-text);display:flex;align-items:flex-start;gap:8px}
+.result-not-found{background:var(--danger-bg);border:1px solid rgba(192,57,43,0.18);border-radius:var(--radius-lg);padding:14px 18px;font-size:13px;color:var(--danger-text);display:flex;align-items:flex-start;gap:8px;margin-bottom:10px}
 .result-not-found svg{width:16px;height:16px;flex-shrink:0;margin-top:1px;color:var(--danger)}
 .veh-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border)}
 .veh-row:last-child{border-bottom:none}
@@ -111,6 +114,8 @@ select:disabled{opacity:.45;cursor:not-allowed}
 .complaint-meta{font-size:12px;color:var(--text-2);margin-bottom:2px}
 .complaint-loc{font-size:12px;color:var(--text-2);margin-bottom:2px}
 .complaint-foot{font-size:11px;color:var(--text-3)}
+.pending-flat-row:last-child{border-bottom:none}
+.pending-register-btn:hover{opacity:.8}
 #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--accent);color:#fff;font-size:13px;font-weight:500;padding:10px 20px;border-radius:40px;opacity:0;transition:all .25s;pointer-events:none;z-index:999;white-space:nowrap}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .empty{text-align:center;padding:36px 0;color:var(--text-3)}
@@ -124,10 +129,8 @@ select:disabled{opacity:.45;cursor:not-allowed}
 .modal-info-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
 @media(max-width:420px){.form-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}}
 
-.lang-switcher{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.15);border-radius:20px;padding:3px}
-.lang-btn{background:none;border:none;color:rgba(255,255,255,0.75);font-family:var(--font);font-size:11px;font-weight:500;padding:3px 8px;border-radius:16px;cursor:pointer;transition:all .15s;white-space:nowrap}
-.lang-btn.active{background:rgba(255,255,255,0.25);color:#fff}
-.lang-btn:hover:not(.active){color:#fff}
+  .pending-carousel{display:flex;flex-wrap:wrap;gap:6px;padding:4px 0}
+  .pending-chip{display:inline-flex;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:500;color:var(--text-2);white-space:nowrap}
 </style>
 </head>
 <body>
@@ -141,8 +144,8 @@ select:disabled{opacity:.45;cursor:not-allowed}
     <span class="header-badge" id="hdr-count">Connecting...</span>
     <div class="lang-switcher">
       <button class="lang-btn active" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('gu')">ગુ</button>
-      <button class="lang-btn" onclick="setLang('hi')">हि</button>
+      <button class="lang-btn" onclick="setLang('gu')">&#2711;</button>
+      <button class="lang-btn" onclick="setLang('hi')">&#2361;&#2367;</button>
     </div>
   </div>
 </header>
@@ -150,32 +153,43 @@ select:disabled{opacity:.45;cursor:not-allowed}
 <div class="container">
   <div class="tabs" role="tablist">
     <button class="tab-btn active" id="tab-lookup-btn" onclick="switchTab('lookup')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span data-i18n="tab_lookup">Lookup</span></button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span data-i18n="tab_lookup">Lookup</span>
+    </button>
     <button class="tab-btn" id="tab-register-btn" onclick="switchTab('register')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span data-i18n="tab_register">Register</span></button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span data-i18n="tab_register">Register</span>
+    </button>
     <button class="tab-btn" id="tab-directory-btn" onclick="switchTab('directory')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><span data-i18n="tab_directory">Directory</span></button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><span data-i18n="tab_directory">Directory</span>
+    </button>
     <button class="tab-btn" id="tab-report-btn" onclick="switchTab('report')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span data-i18n="tab_reports">Reports</span></button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span data-i18n="tab_reports">Reports</span>
+    </button>
   </div>
 
   <!-- LOOKUP -->
   <div id="sec-lookup" class="section active">
     <div class="search-row">
-      <input type="text" id="lookup-input" placeholder="Enter vehicle number e.g. GJ01AB1234"
-        oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')"
-        onkeydown="if(event.key==='Enter')doLookup()">
+      <input type="text" id="lookup-input" placeholder="Enter vehicle number e.g. GJ01AB1234" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')" onkeydown="if(event.key==='Enter')doLookup()">
       <button onclick="doLookup()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Search
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span data-i18n="search_btn">Search</span>
       </button>
     </div>
     <div id="lookup-result"></div>
     <div class="card">
       <div class="card-title">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Recently registered
+        <span data-i18n="recent_registered">Recently registered</span>
       </div>
       <div id="recent-list"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span data-i18n="pending_title">Pending registrations</span>
+        <span id="pending-count-badge" style="margin-left:auto;font-size:11px;font-weight:500;background:var(--danger-bg);color:var(--danger-text);border-radius:20px;padding:2px 10px"></span>
+      </div>
+      <p style="font-size:12px;color:var(--text-3);margin-bottom:12px" data-i18n="pending_sub">Flats that have not registered any vehicle yet</p>
+      <div id="pending-list"></div>
     </div>
   </div>
 
@@ -184,27 +198,28 @@ select:disabled{opacity:.45;cursor:not-allowed}
     <div class="card">
       <div class="card-title">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-        Register your vehicle
+        <span data-i18n="register_title">Register your vehicle</span>
       </div>
-      <div class="form-field"><label>Resident name</label><input type="text" id="reg-name" placeholder="Full name"></div>
+      <div class="form-field"><label data-i18n="lbl_name">Resident name</label><input type="text" id="reg-name" placeholder="Full name"></div>
       <div class="form-grid">
-        <div class="form-field" style="margin-bottom:0"><label>Block</label>
+        <div class="form-field" style="margin-bottom:0"><label data-i18n="lbl_block">Block</label>
           <select id="reg-block"><option value="">Block</option><option>A</option><option>B</option><option>C</option></select>
         </div>
-        <div class="form-field" style="margin-bottom:0"><label>Floor</label>
+        <div class="form-field" style="margin-bottom:0"><label data-i18n="lbl_floor">Floor</label>
           <select id="reg-floor" onchange="updateFlats()"><option value="">Floor</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select>
         </div>
-        <div class="form-field" style="margin-bottom:0"><label>Flat</label>
+        <div class="form-field" style="margin-bottom:0"><label data-i18n="lbl_flat">Flat</label>
           <select id="reg-flat" disabled><option value="">Select floor first</option></select>
         </div>
       </div>
-      <div class="form-field"><label>Vehicle number</label><input type="text" id="reg-plate" placeholder="GJ01AB1234" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')"></div>
-      <div class="form-field"><label>Vehicle type</label>
+      <div class="form-field"><label data-i18n="lbl_plate">Vehicle number</label><input type="text" id="reg-plate" placeholder="GJ01AB1234" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')"></div>
+      <div class="form-field"><label data-i18n="lbl_type">Vehicle type</label>
         <select id="reg-type"><option value="">Select type</option><option value="4 wheeler">4 wheeler</option><option value="2 wheeler">2 wheeler</option><option value="Other">Other</option></select>
       </div>
-      <div class="form-field"><label>Contact number</label><input type="tel" id="reg-contact" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"></div>
+      <div class="form-field"><label data-i18n="lbl_contact">Contact number</label><input type="tel" id="reg-contact" placeholder="10-digit mobile number" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')"></div>
       <button class="submit-btn" id="reg-btn" onclick="doRegister()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="reg_btn">Register vehicle</span></button>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="reg_btn">Register vehicle</span>
+      </button>
     </div>
   </div>
 
@@ -229,7 +244,7 @@ select:disabled{opacity:.45;cursor:not-allowed}
     <div class="card" style="padding:0 20px">
       <div class="card-title" style="padding-top:16px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Complaint history
+        <span data-i18n="complaint_history">Complaint history</span>
       </div>
       <div id="complaint-list"></div>
     </div>
@@ -244,26 +259,26 @@ select:disabled{opacity:.45;cursor:not-allowed}
     <div class="modal-head" style="background:var(--warning-bg)">
       <div class="modal-head-title">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" style="color:var(--warning)"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        Report bad parking
+        <span data-i18n="modal_report_title">Report bad parking</span>
       </div>
       <button class="modal-close" onclick="closeModal('complaint-modal')">&times;</button>
     </div>
     <div class="modal-body">
       <div class="modal-info-box">
-        <div><div style="font-size:11px;color:var(--text-3);margin-bottom:2px">Vehicle</div><div id="cm-plate" style="font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:.06em"></div></div>
-        <div style="text-align:right"><div style="font-size:11px;color:var(--text-3);margin-bottom:2px">Owner</div><div id="cm-owner" style="font-size:13px;font-weight:500"></div><div id="cm-flat" style="font-size:11px;color:var(--text-3)"></div></div>
+        <div><div style="font-size:11px;color:var(--text-3);margin-bottom:2px" data-i18n="cm_vehicle">Vehicle</div><div id="cm-plate" style="font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:.06em"></div></div>
+        <div style="text-align:right"><div style="font-size:11px;color:var(--text-3);margin-bottom:2px" data-i18n="cm_owner">Owner</div><div id="cm-owner" style="font-size:13px;font-weight:500"></div><div id="cm-flat" style="font-size:11px;color:var(--text-3)"></div></div>
       </div>
-      <div class="form-field"><label>Issue</label>
+      <div class="form-field"><label data-i18n="lbl_issue">Issue</label>
         <select id="cm-issue"><option value="">Select issue</option><option value="Blocking another vehicle">Blocking another vehicle</option><option value="Parked in wrong spot">Parked in wrong spot</option><option value="Blocking entrance / gate">Blocking entrance / gate</option><option value="Parked in no-parking zone">Parked in no-parking zone</option><option value="Double parked">Double parked</option><option value="Other">Other</option></select>
       </div>
-      <div class="form-field"><label>Parking location</label><input type="text" id="cm-location" placeholder="e.g. Block A basement, near gate 2"></div>
-      <div class="form-field"><label>Your flat (reporter)</label><input type="text" id="cm-by" placeholder="e.g. A203"></div>
+      <div class="form-field"><label data-i18n="lbl_location">Parking location</label><input type="text" id="cm-location" placeholder="e.g. Block A basement, near gate 2"></div>
+      <div class="form-field"><label data-i18n="lbl_reporter">Your flat (reporter)</label><input type="text" id="cm-by" placeholder="e.g. A203"></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
         <button class="submit-btn" onclick="cmWhatsApp()" style="background:#25d366;border:none;font-size:13px">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span data-i18n="wa_btn">WhatsApp</span>
         </button>
         <button class="submit-btn" onclick="cmLogComplaint()" style="font-size:13px">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Log complaint
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span data-i18n="log_btn">Log complaint</span>
         </button>
       </div>
     </div>
@@ -274,19 +289,16 @@ select:disabled{opacity:.45;cursor:not-allowed}
 <div id="pin-modal" class="modal-overlay">
   <div class="modal-box">
     <div class="modal-head">
-      <div class="modal-head-title">Admin verification</div>
+      <div class="modal-head-title" data-i18n="admin_verify">Admin verification</div>
       <button class="modal-close" onclick="closeModal('pin-modal')">&times;</button>
     </div>
     <div class="modal-body">
       <div id="pin-label" style="font-size:13px;color:var(--text-2);margin-bottom:14px;line-height:1.5"></div>
-      <input type="password" id="pin-input" placeholder="Enter PIN" maxlength="6"
-        oninput="this.value=this.value.replace(/\D/g,'')"
-        onkeydown="if(event.key==='Enter')confirmDelete()"
-        style="text-align:center;letter-spacing:.2em;font-size:18px">
+      <input type="password" id="pin-input" placeholder="Enter PIN" maxlength="6" oninput="this.value=this.value.replace(/\D/g,'')" onkeydown="if(event.key==='Enter')confirmDelete()" style="text-align:center;letter-spacing:.2em;font-size:18px">
       <div id="pin-error" style="display:none;font-size:12px;color:var(--danger);margin-top:6px">Incorrect PIN. Try again.</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px">
-        <button onclick="closeModal('pin-modal')" style="height:40px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface2);font-family:var(--font);font-size:13px;cursor:pointer;color:var(--text-2)">Cancel</button>
-        <button onclick="confirmDelete()" style="height:40px;border-radius:var(--radius);border:none;background:var(--danger);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;color:#fff">Delete</button>
+        <button onclick="closeModal('pin-modal')" style="height:40px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface2);font-family:var(--font);font-size:13px;cursor:pointer;color:var(--text-2)" data-i18n="pin_cancel">Cancel</button>
+        <button onclick="confirmDelete()" style="height:40px;border-radius:var(--radius);border:none;background:var(--danger);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;color:#fff" data-i18n="pin_delete">Delete</button>
       </div>
     </div>
   </div>
@@ -296,19 +308,16 @@ select:disabled{opacity:.45;cursor:not-allowed}
 <div id="cpin-modal" class="modal-overlay">
   <div class="modal-box">
     <div class="modal-head">
-      <div class="modal-head-title">Admin verification</div>
+      <div class="modal-head-title" data-i18n="admin_verify">Admin verification</div>
       <button class="modal-close" onclick="closeModal('cpin-modal')">&times;</button>
     </div>
     <div class="modal-body">
-      <div style="font-size:13px;color:var(--text-2);margin-bottom:14px;line-height:1.5">Enter admin PIN to delete this complaint record.</div>
-      <input type="password" id="cpin-input" placeholder="Enter PIN" maxlength="6"
-        oninput="this.value=this.value.replace(/\D/g,'')"
-        onkeydown="if(event.key==='Enter')confirmDeleteComplaint()"
-        style="text-align:center;letter-spacing:.2em;font-size:18px">
+      <div style="font-size:13px;color:var(--text-2);margin-bottom:14px;line-height:1.5" data-i18n="pin_label_complaint">Enter admin PIN to delete this complaint record.</div>
+      <input type="password" id="cpin-input" placeholder="Enter PIN" maxlength="6" oninput="this.value=this.value.replace(/\D/g,'')" onkeydown="if(event.key==='Enter')confirmDeleteComplaint()" style="text-align:center;letter-spacing:.2em;font-size:18px">
       <div id="cpin-error" style="display:none;font-size:12px;color:var(--danger);margin-top:6px">Incorrect PIN. Try again.</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px">
-        <button onclick="closeModal('cpin-modal')" style="height:40px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface2);font-family:var(--font);font-size:13px;cursor:pointer;color:var(--text-2)">Cancel</button>
-        <button onclick="confirmDeleteComplaint()" style="height:40px;border-radius:var(--radius);border:none;background:var(--danger);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;color:#fff">Delete</button>
+        <button onclick="closeModal('cpin-modal')" style="height:40px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface2);font-family:var(--font);font-size:13px;cursor:pointer;color:var(--text-2)" data-i18n="pin_cancel">Cancel</button>
+        <button onclick="confirmDeleteComplaint()" style="height:40px;border-radius:var(--radius);border:none;background:var(--danger);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;color:#fff" data-i18n="pin_delete">Delete</button>
       </div>
     </div>
   </div>
@@ -317,488 +326,252 @@ select:disabled{opacity:.45;cursor:not-allowed}
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
-// ── i18n ──────────────────────────────────────────────────────────────────────
 var LANGS = {
-  en: {
-    tab_lookup:'Lookup', tab_register:'Register', tab_directory:'Directory', tab_reports:'Reports',
-    recent_registered:'Recently registered', register_title:'Register your vehicle', complaint_history:'Complaint history',
-    stat_total:'Total vehicles', stat_cars:'4 wheelers', stat_bikes:'2 wheelers',
-    hdr_connecting:'Connecting...', hdr_vehicles:' vehicle registered', hdr_vehicles_pl:' vehicles registered',
-    search_placeholder:'Enter vehicle number e.g. GJ01AB1234', search_btn:'Search',
-    lbl_name:'Resident name', lbl_block:'Block', lbl_floor:'Floor', lbl_flat:'Flat',
-    lbl_plate:'Vehicle number', lbl_type:'Vehicle type', lbl_contact:'Contact number',
-    lbl_issue:'Issue', lbl_location:'Parking location', lbl_reporter:'Your flat (reporter)',
-    ph_name:'Full name', ph_plate:'GJ01AB1234', ph_contact:'10-digit mobile number',
-    ph_location:'e.g. Block A basement, near gate 2', ph_reporter:'e.g. A203', ph_search:'Search name or plate...',
-    ph_floor:'Floor', ph_flat:'Select floor first', ph_flat_ready:'Flat', ph_block:'Block',
-    opt_type_default:'Select type', opt_4w:'4 wheeler', opt_2w:'2 wheeler', opt_other:'Other',
-    opt_issue_default:'Select issue', opt_block_all:'All blocks',
-    opt_issues:['Blocking another vehicle','Parked in wrong spot','Blocking entrance / gate','Parked in no-parking zone','Double parked','Other'],
-    reg_btn:'Register vehicle', reg_saving:'Saving...',
-    found_label:'Vehicle found', call_btn:'Call owner', wa_btn:'WhatsApp',
-    report_btn:'Report bad parking', alert_btn:'Alert society WhatsApp group',
-    not_found:'No vehicle found for', not_found2:'. This vehicle is not registered.',
-    ask_register:'Ask the owner to register on the Register tab.',
-    no_vehicles:'No vehicles registered yet', no_results:'No results', no_complaints:'No complaints yet',
-    toast_registered:'Vehicle registered successfully!', toast_removed:'Vehicle removed.',
-    toast_complaint_logged:'Complaint logged!', toast_complaint_removed:'Complaint removed.',
-    toast_error_save:'Error saving. Check your connection.',
-    toast_error_remove:'Error removing. Try again.',
-    toast_error_log:'Error logging. Check Firestore rules.',
-    toast_group_opened:'Group opened! Message copied — paste and send.',
-    pin_wrong:'Incorrect PIN. Try again.',
-    pin_label_vehicle:"Enter admin PIN to remove {name}'s vehicle.",
-    pin_label_complaint:'Enter admin PIN to delete this complaint record.',
-    pin_cancel:'Cancel', pin_delete:'Delete',
-    modal_report_title:'Report bad parking',
-    cm_vehicle:'Vehicle', cm_owner:'Owner',
-    admin_verify:'Admin verification',
-    complaint_reported_by:'Reported by Flat',
-    veh_count:' vehicle', veh_count_pl:' vehicles',
-    wheel_4:'4 Wheeler', wheel_2:'2 Wheeler', wheel_other:'Other',
-    connection_error:'Connection error',
-    wa_msg_unregistered:'Attention Highland Residency residents, vehicle *{plate}* was found badly parked and is NOT registered in our system. If this is your vehicle, please register it and move it immediately.',
-    wa_msg_owner:'Hello {name}, your vehicle {plate} has been reported for: {issue}.{loc} Please move it at the earliest.{by}',
-  },
-  gu: {
-    tab_lookup:'શોધો', tab_register:'નોંધણી', tab_directory:'યાદી', tab_reports:'ફરિયાદ',
-    recent_registered:'તાજેતરમાં નોંધાયેલ', register_title:'તમારું વાહન નોંધો', complaint_history:'ફરિયાદ ઇતિહાસ',
-    stat_total:'કુલ વાહન', stat_cars:'4 પૈડાં', stat_bikes:'2 પૈડાં',
-    hdr_connecting:'જોડાઈ રહ્યું છે...', hdr_vehicles:' વાહન નોંધાયેલ', hdr_vehicles_pl:' વાહન નોંધાયેલ',
-    search_placeholder:'વાહન નંબર દાખલ કરો, દા.ત. GJ01AB1234', search_btn:'શોધો',
-    lbl_name:'રહેવાસીનું નામ', lbl_block:'બ્લોક', lbl_floor:'માળ', lbl_flat:'ફ્લેટ',
-    lbl_plate:'વાહન નંબર', lbl_type:'વાહનનો પ્રકાર', lbl_contact:'સંપર્ક નંબર',
-    lbl_issue:'સમસ્યા', lbl_location:'પાર્કિંગ સ્થાન', lbl_reporter:'તમારો ફ્લેટ',
-    ph_name:'પૂરું નામ', ph_plate:'GJ01AB1234', ph_contact:'10 અંકનો મોબાઇલ નંબર',
-    ph_location:'દા.ત. બ્લોક A બેઝમેન્ટ, ગેટ 2 પાસે', ph_reporter:'દા.ત. A203', ph_search:'નામ અથવા પ્લેટ શોધો...',
-    ph_floor:'માળ', ph_flat:'પહેલાં માળ પસંદ કરો', ph_flat_ready:'ફ્લેટ', ph_block:'બ્લોક',
-    opt_type_default:'પ્રકાર પસંદ કરો', opt_4w:'4 પૈડાં', opt_2w:'2 પૈડાં', opt_other:'અન્ય',
-    opt_issue_default:'સમસ્યા પસંદ કરો', opt_block_all:'બધા બ્લોક',
-    opt_issues:['બીજા વાહનને અવરોધ','ખોટી જગ્યાએ પાર્ક','પ્રવેશ/ગેટ બ્લોક','નો-પાર્કિંગ ઝોન','ડબલ પાર્ક','અન્ય'],
-    reg_btn:'વાહન નોંધો', reg_saving:'સાચવી રહ્યું છે...',
-    found_label:'વાહન મળ્યું', call_btn:'માલિકને કૉલ કરો', wa_btn:'WhatsApp',
-    report_btn:'ખોટી પાર્કિંગ જણાવો', alert_btn:'સોસાયટી ગ્રૂપને જણાવો',
-    not_found:'માટે કોઈ વાહન મળ્યું નથી', not_found2:'. આ વાહન નોંધાયેલ નથી.',
-    ask_register:'માલિકને Register ટૅબ પર નોંધણી કરવા કહો.',
-    no_vehicles:'હજુ સુધી કોઈ વાહન નોંધાયું નથી', no_results:'કોઈ પરિણામ નથી', no_complaints:'હજુ કોઈ ફરિયાદ નથી',
-    toast_registered:'વાહન સફળતાપૂર્વક નોંધાયું!', toast_removed:'વાહન દૂર થયું.',
-    toast_complaint_logged:'ફરિયાદ નોંધાઈ!', toast_complaint_removed:'ફરિયાદ દૂર થઈ.',
-    toast_error_save:'સાચવવામાં ભૂલ. કનેક્શન તપાસો.',
-    toast_error_remove:'દૂર કરવામાં ભૂલ. ફરી પ્રયાસ કરો.',
-    toast_error_log:'નોંધવામાં ભૂલ. Firestore rules તપાસો.',
-    toast_group_opened:'ગ્રૂપ ખુલ્યું! સંદેશ copy થયો — paste કરી send કરો.',
-    pin_wrong:'ખોટો PIN. ફરી પ્રયાસ કરો.',
-    pin_label_vehicle:'{name}નું વાહન દૂર કરવા admin PIN દાખલ કરો.',
-    pin_label_complaint:'આ ફરિયાદ રેકોર્ડ ડિલીટ કરવા admin PIN દાખલ કરો.',
-    pin_cancel:'રદ કરો', pin_delete:'ડિલીટ કરો',
-    modal_report_title:'ખોટી પાર્કિંગ જણાવો',
-    cm_vehicle:'વાહન', cm_owner:'માલિક',
-    admin_verify:'Admin ચકાસણી',
-    complaint_reported_by:'ફ્લેટ દ્વારા જણાવ્યું',
-    veh_count:' વાહન', veh_count_pl:' વાહન',
-    wheel_4:'4 પૈડાં', wheel_2:'2 પૈડાં', wheel_other:'અન્ય',
-    connection_error:'કનેક્શન ભૂલ',
-    wa_msg_unregistered:'Highland Residency ના તમામ સભ્યો, વાહન *{plate}* ખોટી જગ્યાએ પાર્ક છે અને આપણી સિસ્ટમમાં નોંધાયેલ નથી. જો આ તમારું વાહન હોય, તો તરત ખસેડો.',
-    wa_msg_owner:'નમસ્કાર {name}, તમારું વાહન {plate} આ કારણ માટે ફરિયાદ થઈ: {issue}.{loc} કૃપા કરી તરત ખસેડો.{by}',
-  },
-  hi: {
-    tab_lookup:'खोजें', tab_register:'पंजीकरण', tab_directory:'सूची', tab_reports:'शिकायत',
-    recent_registered:'हाल में पंजीकृत', register_title:'अपना वाहन पंजीकृत करें', complaint_history:'शिकायत इतिहास',
-    stat_total:'कुल वाहन', stat_cars:'4 पहिया', stat_bikes:'2 पहिया',
-    hdr_connecting:'जुड़ रहा है...', hdr_vehicles:' वाहन पंजीकृत', hdr_vehicles_pl:' वाहन पंजीकृत',
-    search_placeholder:'वाहन नंबर दर्ज करें, जैसे GJ01AB1234', search_btn:'खोजें',
-    lbl_name:'निवासी का नाम', lbl_block:'ब्लॉक', lbl_floor:'मंजिल', lbl_flat:'फ्लैट',
-    lbl_plate:'वाहन नंबर', lbl_type:'वाहन का प्रकार', lbl_contact:'संपर्क नंबर',
-    lbl_issue:'समस्या', lbl_location:'पार्किंग स्थान', lbl_reporter:'आपका फ्लैट',
-    ph_name:'पूरा नाम', ph_plate:'GJ01AB1234', ph_contact:'10 अंकों का मोबाइल नंबर',
-    ph_location:'जैसे ब्लॉक A बेसमेंट, गेट 2 के पास', ph_reporter:'जैसे A203', ph_search:'नाम या प्लेट खोजें...',
-    ph_floor:'मंजिल', ph_flat:'पहले मंजिल चुनें', ph_flat_ready:'फ्लैट', ph_block:'ब्लॉक',
-    opt_type_default:'प्रकार चुनें', opt_4w:'4 पहिया', opt_2w:'2 पहिया', opt_other:'अन्य',
-    opt_issue_default:'समस्या चुनें', opt_block_all:'सभी ब्लॉक',
-    opt_issues:['दूसरे वाहन को रोक रहा है','गलत जगह पार्क','प्रवेश/गेट बंद','नो-पार्किंग ज़ोन','डबल पार्क','अन्य'],
-    reg_btn:'वाहन पंजीकृत करें', reg_saving:'सहेजा जा रहा है...',
-    found_label:'वाहन मिला', call_btn:'मालिक को कॉल करें', wa_btn:'WhatsApp',
-    report_btn:'गलत पार्किंग रिपोर्ट करें', alert_btn:'सोसायटी ग्रुप को सूचित करें',
-    not_found:'के लिए कोई वाहन नहीं मिला', not_found2:'. यह वाहन पंजीकृत नहीं है।',
-    ask_register:'मालिक को Register टैब पर पंजीकरण करने को कहें।',
-    no_vehicles:'अभी तक कोई वाहन पंजीकृत नहीं', no_results:'कोई परिणाम नहीं', no_complaints:'अभी कोई शिकायत नहीं',
-    toast_registered:'वाहन सफलतापूर्वक पंजीकृत!', toast_removed:'वाहन हटाया गया।',
-    toast_complaint_logged:'शिकायत दर्ज!', toast_complaint_removed:'शिकायत हटाई गई।',
-    toast_error_save:'सहेजने में त्रुटि। कनेक्शन जांचें।',
-    toast_error_remove:'हटाने में त्रुटि। पुनः प्रयास करें।',
-    toast_error_log:'दर्ज करने में त्रुटि। Firestore rules जांचें।',
-    toast_group_opened:'ग्रुप खुला! संदेश कॉपी हुआ — paste करके send करें।',
-    pin_wrong:'गलत PIN। पुनः प्रयास करें।',
-    pin_label_vehicle:'{name} का वाहन हटाने के लिए admin PIN दर्ज करें।',
-    pin_label_complaint:'यह शिकायत रिकॉर्ड हटाने के लिए admin PIN दर्ज करें।',
-    pin_cancel:'रद्द करें', pin_delete:'हटाएं',
-    modal_report_title:'गलत पार्किंग रिपोर्ट करें',
-    cm_vehicle:'वाहन', cm_owner:'मालिक',
-    admin_verify:'Admin सत्यापन',
-    complaint_reported_by:'फ्लैट द्वारा रिपोर्ट',
-    veh_count:' वाहन', veh_count_pl:' वाहन',
-    wheel_4:'4 पहिया', wheel_2:'2 पहिया', wheel_other:'अन्य',
-    connection_error:'कनेक्शन त्रुटि',
-    wa_msg_unregistered:'Highland Residency के सभी सदस्य, वाहन *{plate}* गलत जगह पार्क है और हमारे सिस्टम में पंजीकृत नहीं है। अगर यह आपका वाहन है तो तुरंत हटाएं।',
-    wa_msg_owner:'नमस्ते {name}, आपका वाहन {plate} इस कारण से रिपोर्ट हुआ: {issue}.{loc} कृपया तुरंत हटाएं।{by}',
-  }
+  en:{tab_lookup:"Lookup",tab_register:"Register",tab_directory:"Directory",tab_reports:"Reports",recent_registered:"Recently registered",register_title:"Register your vehicle",complaint_history:"Complaint history",pending_title:"Pending registrations",pending_sub:"Flats that have not registered any vehicle yet",stat_total:"Total vehicles",stat_cars:"4 wheelers",stat_bikes:"2 wheelers",hdr_connecting:"Connecting...",hdr_vehicles:" vehicle registered",hdr_vehicles_pl:" vehicles registered",search_placeholder:"Enter vehicle number e.g. GJ01AB1234",search_btn:"Search",lbl_name:"Resident name",lbl_block:"Block",lbl_floor:"Floor",lbl_flat:"Flat",lbl_plate:"Vehicle number",lbl_type:"Vehicle type",lbl_contact:"Contact number",lbl_issue:"Issue",lbl_location:"Parking location",lbl_reporter:"Your flat (reporter)",ph_name:"Full name",ph_plate:"GJ01AB1234",ph_contact:"10-digit mobile number",ph_location:"e.g. Block A basement, near gate 2",ph_reporter:"e.g. A203",ph_search:"Search name or plate...",ph_floor:"Floor",ph_flat:"Select floor first",ph_flat_ready:"Flat",ph_block:"Block",opt_type_default:"Select type",opt_4w:"4 wheeler",opt_2w:"2 wheeler",opt_other:"Other",opt_issue_default:"Select issue",opt_block_all:"All blocks",opt_issues:["Blocking another vehicle","Parked in wrong spot","Blocking entrance / gate","Parked in no-parking zone","Double parked","Other"],reg_btn:"Register vehicle",reg_saving:"Saving...",log_btn:"Log complaint",found_label:"Vehicle found",call_btn:"Call owner",wa_btn:"WhatsApp",report_btn:"Report bad parking",alert_btn:"Alert society WhatsApp group",not_found:"No vehicle found for",not_found2:". This vehicle is not registered.",no_vehicles:"No vehicles registered yet",no_results:"No results",no_complaints:"No complaints yet",toast_registered:"Vehicle registered successfully!",toast_removed:"Vehicle removed.",toast_complaint_logged:"Complaint logged!",toast_complaint_removed:"Complaint removed.",toast_error_save:"Error saving. Check your connection.",toast_error_remove:"Error removing. Try again.",toast_error_log:"Error logging. Check Firestore rules.",pin_wrong:"Incorrect PIN. Try again.",pin_label_vehicle:"Enter admin PIN to remove {name}'s vehicle.",pin_label_complaint:"Enter admin PIN to delete this complaint record.",pin_cancel:"Cancel",pin_delete:"Delete",modal_report_title:"Report bad parking",cm_vehicle:"Vehicle",cm_owner:"Owner",admin_verify:"Admin verification",complaint_reported_by:"Reported by Flat",veh_count:" vehicle",veh_count_pl:" vehicles",wheel_4:"4 Wheeler",wheel_2:"2 Wheeler",wheel_other:"Other",connection_error:"Connection error",wa_msg_unregistered:"Attention Highland Residency residents, vehicle *{plate}* was found badly parked and is NOT registered in our system. If this is your vehicle, please register it and move it immediately.",wa_msg_owner:"Hello {name}, your vehicle {plate} has been reported for: {issue}.{loc} Please move it at the earliest.{by}",pending_register:"Register"},
+  gu:{tab_lookup:"\u0936\u0CCB\u0CA7\u0CCB",tab_register:"\u0AA8\u0CCB\u0A82\u0AA7\u0AA3\u0AC0",tab_directory:"\u0AAF\u0ABE\u0AA6\u0AC0",tab_reports:"\u0AAB\u0AB0\u0ABF\u0AAF\u0ABE\u0AA6",recent_registered:"\u0AA4\u0ABE\u0A9C\u0AC7\u0AA4\u0AB0\u0AAE\u0ABE\u0A82 \u0AA8\u0CCB\u0A82\u0AA7\u0ABE\u0AAF\u0AC7\u0AB2",register_title:"\u0AA4\u0AAE\u0ABE\u0AB0\u0AC1\u0A82 \u0AB5\u0ABE\u0AB9\u0AA8 \u0AA8\u0CCB\u0A82\u0AA7\u0CCB",complaint_history:"\u0AAB\u0AB0\u0ABF\u0AAF\u0ABE\u0AA6 \u0A87\u0AA4\u0ABF\u0AB9\u0ABE\u0AB8",pending_title:"\u0AAC\u0ABE\u0A95\u0AC0 \u0AA8\u0CCB\u0A82\u0AA7\u0AA3\u0AC0",pending_sub:"\u0A9C\u0AC7 \u0AAB\u0ACD\u0AB2\u0AC7\u0A9F\u0AC7 \u0AB9\u0A9C\u0AC1 \u0AB5\u0ABE\u0AB9\u0AA8 \u0AA8\u0CCB\u0A82\u0AA7\u0ACD\u0AAF\u0AC1\u0A82 \u0AA8\u0AA5\u0AC0",stat_total:"\u0A95\u0AC1\u0AB2 \u0AB5\u0ABE\u0AB9\u0AA8",stat_cars:"4 \u0AAA\u0AC8\u0AA1\u0ABE\u0A82",stat_bikes:"2 \u0AAA\u0AC8\u0AA1\u0ABE\u0A82",hdr_connecting:"\u0A9C\u0CCB\u0AA1\u0ABE\u0A88 \u0AB0\u0AB9\u0CCD\u0AAF\u0AC1\u0A82 \u0A9B\u0AC7...",hdr_vehicles:" \u0AB5\u0ABE\u0AB9\u0AA8 \u0AA8\u0CCB\u0A82\u0AA7\u0ABE\u0AAF\u0AC7\u0AB2",hdr_vehicles_pl:" \u0AB5\u0ABE\u0AB9\u0AA8 \u0AA8\u0CCB\u0A82\u0AA7\u0ABE\u0AAF\u0AC7\u0AB2",search_placeholder:"\u0AB5\u0ABE\u0AB9\u0AA8 \u0AA8\u0A82\u0AAC\u0AB0 \u0AA6\u0ABE\u0A96\u0AB2 \u0A95\u0AB0\u0CCB",search_btn:"\u0936\u0CCB\u0CA7\u0CCB",lbl_name:"\u0AB0\u0AB9\u0AC7\u0AB5\u0ABE\u0CB8\u0AC0\u0AA8\u0AC1\u0A82 \u0AA8\u0ABE\u0AAE",lbl_block:"\u0AAC\u0ACD\u0AB2\u0CCB\u0A95",lbl_floor:"\u0AAE\u0ABE\u0AB3",lbl_flat:"\u0AAB\u0ACD\u0AB2\u0AC7\u0A9F",lbl_plate:"\u0AB5\u0ABE\u0AB9\u0AA8 \u0AA8\u0A82\u0AAC\u0AB0",lbl_type:"\u0AB5\u0ABE\u0AB9\u0AA8\u0AA8\u0CCB \u0AAA\u0CCD\u0AB0\u0A95\u0ABE\u0AB0",lbl_contact:"\u0CB8\u0A82\u0AAA\u0AB0\u0CCD\u0A95 \u0AA8\u0A82\u0AAC\u0AB0",lbl_issue:"\u0CB8\u0AAE\u0CB6\u0CCD\u0AAF\u0ABE",lbl_location:"\u0AAA\u0ABE\u0CB0\u0CCD\u0A95\u0CBF\u0A82\u0A97 \u0CB8\u0CCD\u0AA5\u0ABE\u0AA8",lbl_reporter:"\u0AA4\u0AAE\u0ABE\u0AB0\u0CCB \u0AAB\u0ACD\u0AB2\u0AC7\u0A9F",ph_name:"\u0AAA\u0AC2\u0AB0\u0AC1\u0A82 \u0AA8\u0ABE\u0AAE",ph_plate:"GJ01AB1234",ph_contact:"10 \u0A85\u0A82\u0A95\u0AA8\u0CCB \u0AAE\u0CCB\u0AAC\u0ABE\u0A87\u0AB2 \u0AA8\u0A82\u0AAC\u0AB0",ph_location:"\u0AA6\u0ABE.\u0AA4. \u0AAC\u0ACD\u0AB2\u0CCB\u0A95 A \u0AAC\u0AC7\u0A9D\u0AAE\u0AC7\u0AA8\u0CCD\u0A9F",ph_reporter:"\u0AA6\u0ABE.\u0AA4. A203",ph_search:"\u0AA8\u0ABE\u0AAE \u0A85\u0AA5\u0AB5\u0ABE \u0AAA\u0ACD\u0AB2\u0AC7\u0A9F \u0936\u0CCB\u0CA7\u0CCB...",ph_floor:"\u0AAE\u0ABE\u0AB3",ph_flat:"\u0AAA\u0AB9\u0AC7\u0AB2\u0ABE\u0A82 \u0AAE\u0ABE\u0AB3 \u0AAA\u0CB8\u0A82\u0AA6 \u0A95\u0AB0\u0CCB",ph_flat_ready:"\u0AAB\u0ACD\u0AB2\u0AC7\u0A9F",ph_block:"\u0AAC\u0ACD\u0AB2\u0CCB\u0A95",opt_type_default:"\u0AAA\u0CCD\u0AB0\u0A95\u0ABE\u0AB0 \u0AAA\u0CB8\u0A82\u0AA6 \u0A95\u0AB0\u0CCB",opt_4w:"4 \u0AAA\u0AC8\u0AA1\u0ABE\u0A82",opt_2w:"2 \u0AAA\u0AC8\u0AA1\u0ABE\u0A82",opt_other:"\u0A85\u0AA8\u0CCD\u0AAF",opt_issue_default:"\u0CB8\u0AAE\u0CB6\u0CCD\u0AAF\u0ABE \u0AAA\u0CB8\u0A82\u0AA6 \u0A95\u0AB0\u0CCB",opt_block_all:"\u0AAC\u0AA7\u0ABE \u0AAC\u0ACD\u0AB2\u0CCB\u0A95",opt_issues:["\u0AAC\u0AC0\u0A9C\u0ABE \u0AB5\u0ABE\u0AB9\u0AA8\u0AA8\u0AC7 \u0A85\u0AB5\u0AB0\u0CCB\u0AA7","\u0A96\u0CCB\u0A9F\u0AC0 \u0A9C\u0A97\u0CCD\u0AAF\u0ABE\u0A8F \u0AAA\u0ABE\u0CB0\u0CCD\u0A95","\u0AAA\u0CCD\u0AB0\u0AB5\u0AC7\u0CB6/\u0A97\u0AC7\u0A9F \u0AAC\u0ACD\u0AB2\u0CCB\u0A95","\u0AA8\u0CCB-\u0AAA\u0ABE\u0CB0\u0CCD\u0A95\u0CBF\u0A82\u0A97 \u0A9D\u0CCB\u0AA8","\u0AA1\u0AAC\u0AB2 \u0AAA\u0ABE\u0CB0\u0CCD\u0A95","\u0A85\u0AA8\u0CCD\u0AAF"],reg_btn:"\u0AB5\u0ABE\u0AB9\u0AA8 \u0AA8\u0CCB\u0A82\u0AA7\u0CCB",reg_saving:"\u0CB8\u0ABE\u0A9A\u0AB5\u0AC0 \u0AB0\u0AB9\u0CCD\u0AAF\u0AC1\u0A82 \u0A9B\u0AC7...",log_btn:"\u0AAB\u0AB0\u0ABF\u0AAF\u0ABE\u0AA6 \u0AA8\u0CCB\u0A82\u0AA7\u0CCB",found_label:"\u0AB5\u0ABE\u0AB9\u0AA8 \u0AAE\u0AB3\u0CCD\u0AAF\u0AC1\u0A82",call_btn:"\u0AAE\u0ABE\u0AB2\u0ABF\u0A95\u0AA8\u0AC7 \u0A95\u0CCB\u0AB2 \u0A95\u0AB0\u0CCB",wa_btn:"WhatsApp",report_btn:"\u0A96\u0CCB\u0A9F\u0AC0 \u0AAA\u0ABE\u0CB0\u0CCD\u0A95\u0CBF\u0A82\u0A97 \u0A9C\u0AA3\u0ABE\u0AB5\u0CCB",alert_btn:"\u0CB8\u0CCB\u0CB8\u0ABE\u0AAF\u0A9F\u0AC0 \u0A97\u0CCD\u0AB0\u0CC2\u0AAA\u0AA8\u0AC7 \u0A9C\u0AA3\u0ABE\u0AB5\u0CCB",not_found:"\u0AAE\u0ABE\u0A9F\u0AC7 \u0A95\u0CCB\u0A88 \u0AB5\u0ABE\u0AB9\u0AA8 \u0AAE\u0AB3\u0CCD\u0AAF\u0AC1\u0A82 \u0AA8\u0AA5\u0AC0",not_found2:". \u0A86 \u0AB5\u0ABE\u0AB9\u0AA8 \u0AA8\u0CCB\u0A82\u0AA7\u0ABE\u0AAF\u0AC7\u0AB2 \u0AA8\u0AA5\u0AC0.",no_vehicles:"\u0AB9\u0A9C\u0AC1 \u0A95\u0CCB\u0A88 \u0AB5\u0ABE\u0AB9\u0AA8 \u0AA8\u0CCB\u0A82\u0AA7\u0ABE\u0AAF\u0AC1\u0A82 \u0AA8\u0AA5\u0AC0",no_results:"\u0A95\u0CCB\u0A88 \u0AAA\u0AB0\u0ABF\u0AA3\u0ABE\u0AAE \u0AA8\u0AA5\u0AC0",no_complaints:"\u0AB9\u0A9C\u0AC1 \u0A95\u0CCB\u0A88 \u0AAB\u0AB0\u0ABF\u0AAF\u0ABE\u0AA6 \u0AA8\u0AA5\u0AC0",toast_registered:"\u0AB5\u0ABE\u0AB9\u0AA8 \u0CB8\u0AAB\u0AB3\u0AA4\u0ABE\u0AAA\u0AC2\u0AB0\u0CCD\u0AB5\u0A95 \u0AA8\u0CCB\u0A82\u0AA7\u0ABE\u0AAF\u0AC1\u0A82!",toast_removed:"\u0AB5\u0ABE\u0AB9\u0AA8 \u0AA6\u0AC2\u0AB0 \u0AA5\u0AAF\u0AC1\u0A82.",toast_complaint_logged:"\u0AAB\u0AB0\u0ABF\u0AAF\u0ABE\u0AA6 \u0AA8\u0CCB\u0A82\u0AA7\u0ABE\u0A88!",toast_complaint_removed:"\u0AAB\u0AB0\u0ABF\u0AAF\u0ABE\u0AA6 \u0AA6\u0AC2\u0AB0 \u0AA5\u0A88.",toast_error_save:"\u0CB8\u0ABE\u0A9A\u0AB5\u0AB5\u0ABE\u0AAE\u0ABE\u0A82 \u0AAD\u0AC2\u0AB2.",toast_error_remove:"\u0AA6\u0AC2\u0AB0 \u0A95\u0AB0\u0AB5\u0ABE\u0AAE\u0ABE\u0A82 \u0AAD\u0AC2\u0AB2.",toast_error_log:"\u0AA8\u0CCB\u0A82\u0AA7\u0AB5\u0ABE\u0AAE\u0ABE\u0A82 \u0AAD\u0AC2\u0AB2.",pin_wrong:"\u0A96\u0CCB\u0A9F\u0CCB PIN.",pin_label_vehicle:"{name}\u0AA8\u0AC1\u0A82 \u0AB5\u0ABE\u0AB9\u0AA8 \u0AA6\u0AC2\u0AB0 \u0A95\u0AB0\u0AB5\u0ABE PIN \u0AA6\u0ABE\u0A96\u0AB2 \u0A95\u0AB0\u0CCB.",pin_label_complaint:"\u0AAB\u0AB0\u0ABF\u0AAF\u0ABE\u0AA6 \u0AA1\u0ABF\u0AB2\u0AC0\u0A9F \u0A95\u0AB0\u0AB5\u0ABE PIN \u0AA6\u0ABE\u0A96\u0AB2 \u0A95\u0AB0\u0CCB.",pin_cancel:"\u0AB0\u0AA6 \u0A95\u0AB0\u0CCB",pin_delete:"\u0AA1\u0ABF\u0AB2\u0AC0\u0A9F \u0A95\u0AB0\u0CCB",modal_report_title:"\u0A96\u0CCB\u0A9F\u0AC0 \u0AAA\u0ABE\u0CB0\u0CCD\u0A95\u0CBF\u0A82\u0A97 \u0A9C\u0AA3\u0ABE\u0AB5\u0CCB",cm_vehicle:"\u0AB5\u0ABE\u0AB9\u0AA8",cm_owner:"\u0AAE\u0ABE\u0AB2\u0ABF\u0A95",admin_verify:"Admin \u0A9A\u0A95\u0ABE\u0CB8\u0AA3\u0AC0",complaint_reported_by:"\u0AAB\u0ACD\u0AB2\u0AC7\u0A9F \u0AA6\u0CCD\u0AB5\u0ABE\u0AB0\u0ABE",veh_count:" \u0AB5\u0ABE\u0AB9\u0AA8",veh_count_pl:" \u0AB5\u0ABE\u0AB9\u0AA8",wheel_4:"4 \u0AAA\u0AC8\u0AA1\u0ABE\u0A82",wheel_2:"2 \u0AAA\u0AC8\u0AA1\u0ABE\u0A82",wheel_other:"\u0A85\u0AA8\u0CCD\u0AAF",connection_error:"\u0A95\u0AA8\u0AC7\u0A95\u0CCD\u0CB6\u0AA8 \u0AAD\u0AC2\u0AB2",wa_msg_unregistered:"Highland Residency \u0AA8\u0ABE \u0AA4\u0AAE\u0ABE\u0AAE \u0CB8\u0AAD\u0CCD\u0AAF\u0CCB, \u0AB5\u0ABE\u0AB9\u0AA8 *{plate}* \u0A96\u0CCB\u0A9F\u0AC0 \u0A9C\u0A97\u0CCD\u0AAF\u0ABE\u0A8F \u0AAA\u0ABE\u0CB0\u0CCD\u0A95 \u0A9B\u0AC7. \u0A9C\u0CCB \u0A86 \u0AA4\u0AAE\u0ABE\u0AB0\u0AC1\u0A82 \u0AB5\u0ABE\u0AB9\u0AA8 \u0AB9\u0CCB\u0AAF, \u0AA4\u0CCB \u0AA4\u0AB0\u0AA4 \u0A96\u0CB8\u0AC7\u0AA1\u0CCB.",wa_msg_owner:"\u0AA8\u0AAE\u0CB8\u0CCD\u0A95\u0ABE\u0AB0 {name}, \u0AA4\u0AAE\u0ABE\u0AB0\u0AC1\u0A82 \u0AB5\u0ABE\u0AB9\u0AA8 {plate} \u0A86 \u0A95\u0ABE\u0AB0\u0AA3 \u0AAE\u0ABE\u0A9F\u0AC7 \u0AAB\u0AB0\u0ABF\u0AAF\u0ABE\u0AA6 \u0AA5\u0A88: {issue}.{loc} \u0A95\u0CC3\u0AAA\u0ABE \u0A95\u0AB0\u0AC0 \u0AA4\u0AB0\u0AA4 \u0A96\u0CB8\u0AC7\u0AA1\u0CCB.{by}",pending_register:"\u0AA8\u0CCB\u0A82\u0AA7\u0CCB"},
+  hi:{tab_lookup:"\u0916\u094B\u091C\u0947\u0902",tab_register:"\u092A\u0902\u091C\u0940\u0915\u0930\u0923",tab_directory:"\u0938\u0942\u091A\u0940",tab_reports:"\u0936\u093F\u0915\u093E\u092F\u0924",recent_registered:"\u0939\u093E\u0932 \u092E\u0947\u0902 \u092A\u0902\u091C\u0940\u0915\u0943\u0924",register_title:"\u0905\u092A\u0928\u093E \u0935\u093E\u0939\u0928 \u092A\u0902\u091C\u0940\u0915\u0943\u0924 \u0915\u0930\u0947\u0902",complaint_history:"\u0936\u093F\u0915\u093E\u092F\u0924 \u0907\u0924\u093F\u0939\u093E\u0938",pending_title:"\u0932\u0902\u092C\u093F\u0924 \u092A\u0902\u091C\u0940\u0915\u0930\u0923",pending_sub:"\u091C\u093F\u0928 \u092B\u094D\u0932\u0948\u091F \u0928\u0947 \u0905\u092D\u0940 \u0924\u0915 \u0935\u093E\u0939\u0928 \u092A\u0902\u091C\u0940\u0915\u0943\u0924 \u0928\u0939\u0940\u0902 \u0915\u093F\u092F\u093E",stat_total:"\u0915\u0941\u0932 \u0935\u093E\u0939\u0928",stat_cars:"4 \u092A\u0939\u093F\u092F\u093E",stat_bikes:"2 \u092A\u0939\u093F\u092F\u093E",hdr_connecting:"\u091C\u0941\u0921\u093C \u0930\u0939\u093E \u0939\u0948...",hdr_vehicles:" \u0935\u093E\u0939\u0928 \u092A\u0902\u091C\u0940\u0915\u0943\u0924",hdr_vehicles_pl:" \u0935\u093E\u0939\u0928 \u092A\u0902\u091C\u0940\u0915\u0943\u0924",search_placeholder:"\u0935\u093E\u0939\u0928 \u0928\u0902\u092C\u0930 \u0926\u0930\u094D\u091C \u0915\u0930\u0947\u0902",search_btn:"\u0916\u094B\u091C\u0947\u0902",lbl_name:"\u0928\u093F\u0935\u093E\u0938\u0940 \u0915\u093E \u0928\u093E\u092E",lbl_block:"\u092C\u094D\u0932\u0949\u0915",lbl_floor:"\u092E\u0902\u091C\u093F\u0932",lbl_flat:"\u092B\u094D\u0932\u0948\u091F",lbl_plate:"\u0935\u093E\u0939\u0928 \u0928\u0902\u092C\u0930",lbl_type:"\u0935\u093E\u0939\u0928 \u0915\u093E \u092A\u094D\u0930\u0915\u093E\u0930",lbl_contact:"\u0938\u0902\u092A\u0930\u094D\u0915 \u0928\u0902\u092C\u0930",lbl_issue:"\u0938\u092E\u0938\u094D\u092F\u093E",lbl_location:"\u092A\u093E\u0930\u094D\u0915\u093F\u0902\u0917 \u0938\u094D\u0925\u093E\u0928",lbl_reporter:"\u0906\u092A\u0915\u093E \u092B\u094D\u0932\u0948\u091F",ph_name:"\u092A\u0942\u0930\u093E \u0928\u093E\u092E",ph_plate:"GJ01AB1234",ph_contact:"10 \u0905\u0902\u0915\u094B\u0902 \u0915\u093E \u092E\u094B\u092C\u093E\u0907\u0932 \u0928\u0902\u092C\u0930",ph_location:"\u091C\u0948\u0938\u0947 \u092C\u094D\u0932\u0949\u0915 A \u092C\u0947\u0938\u092E\u0947\u0902\u091F",ph_reporter:"\u091C\u0948\u0938\u0947 A203",ph_search:"\u0928\u093E\u092E \u092F\u093E \u092A\u094D\u0932\u0947\u091F \u0916\u094B\u091C\u0947\u0902...",ph_floor:"\u092E\u0902\u091C\u093F\u0932",ph_flat:"\u092A\u0939\u0932\u0947 \u092E\u0902\u091C\u093F\u0932 \u091A\u0941\u0928\u0947\u0902",ph_flat_ready:"\u092B\u094D\u0932\u0948\u091F",ph_block:"\u092C\u094D\u0932\u0949\u0915",opt_type_default:"\u092A\u094D\u0930\u0915\u093E\u0930 \u091A\u0941\u0928\u0947\u0902",opt_4w:"4 \u092A\u0939\u093F\u092F\u093E",opt_2w:"2 \u092A\u0939\u093F\u092F\u093E",opt_other:"\u0905\u0928\u094D\u092F",opt_issue_default:"\u0938\u092E\u0938\u094D\u092F\u093E \u091A\u0941\u0928\u0947\u0902",opt_block_all:"\u0938\u092D\u0940 \u092C\u094D\u0932\u0949\u0915",opt_issues:["\u0926\u0942\u0938\u0930\u0947 \u0935\u093E\u0939\u0928 \u0915\u094B \u0930\u094B\u0915 \u0930\u0939\u093E \u0939\u0948","\u0917\u0932\u0924 \u091C\u0917\u0939 \u092A\u093E\u0930\u094D\u0915","\u092A\u094D\u0930\u0935\u0947\u0936/\u0917\u0947\u091F \u092C\u0902\u0926","\u0928\u094B-\u092A\u093E\u0930\u094D\u0915\u093F\u0902\u0917 \u091C\u093C\u094B\u0928","\u0921\u092C\u0932 \u092A\u093E\u0930\u094D\u0915","\u0905\u0928\u094D\u092F"],reg_btn:"\u0935\u093E\u0939\u0928 \u092A\u0902\u091C\u0940\u0915\u0943\u0924 \u0915\u0930\u0947\u0902",reg_saving:"\u0938\u0939\u0947\u091C\u093E \u091C\u093E \u0930\u0939\u093E \u0939\u0948...",log_btn:"\u0936\u093F\u0915\u093E\u092F\u0924 \u0926\u0930\u094D\u091C \u0915\u0930\u0947\u0902",found_label:"\u0935\u093E\u0939\u0928 \u092E\u093F\u0932\u093E",call_btn:"\u092E\u093E\u0932\u093F\u0915 \u0915\u094B \u0915\u0949\u0932 \u0915\u0930\u0947\u0902",wa_btn:"WhatsApp",report_btn:"\u0917\u0932\u0924 \u092A\u093E\u0930\u094D\u0915\u093F\u0902\u0917 \u0930\u093F\u092A\u094B\u0930\u094D\u091F \u0915\u0930\u0947\u0902",alert_btn:"\u0938\u094B\u0938\u093E\u092F\u091F\u0940 \u0917\u094D\u0930\u0941\u092A \u0915\u094B \u0938\u0942\u091A\u093F\u0924 \u0915\u0930\u0947\u0902",not_found:"\u0915\u0947 \u0932\u093F\u090F \u0915\u094B\u0908 \u0935\u093E\u0939\u0928 \u0928\u0939\u0940\u0902 \u092E\u093F\u0932\u093E",not_found2:". \u092F\u0939 \u0935\u093E\u0939\u0928 \u092A\u0902\u091C\u0940\u0915\u0943\u0924 \u0928\u0939\u0940\u0902 \u0939\u0948.",no_vehicles:"\u0905\u092D\u0940 \u0924\u0915 \u0915\u094B\u0908 \u0935\u093E\u0939\u0928 \u092A\u0902\u091C\u0940\u0915\u0943\u0924 \u0928\u0939\u0940\u0902",no_results:"\u0915\u094B\u0908 \u092A\u0930\u093F\u0923\u093E\u092E \u0928\u0939\u0940\u0902",no_complaints:"\u0905\u092D\u0940 \u0915\u094B\u0908 \u0936\u093F\u0915\u093E\u092F\u0924 \u0928\u0939\u0940\u0902",toast_registered:"\u0935\u093E\u0939\u0928 \u0938\u092B\u0932\u0924\u093E\u092A\u0942\u0930\u094D\u0935\u0915 \u092A\u0902\u091C\u0940\u0915\u0943\u0924!",toast_removed:"\u0935\u093E\u0939\u0928 \u0939\u091F\u093E\u092F\u093E \u0917\u092F\u093E.",toast_complaint_logged:"\u0936\u093F\u0915\u093E\u092F\u0924 \u0926\u0930\u094D\u091C!",toast_complaint_removed:"\u0936\u093F\u0915\u093E\u092F\u0924 \u0939\u091F\u093E\u0908 \u0917\u0908.",toast_error_save:"\u0938\u0939\u0947\u091C\u0928\u0947 \u092E\u0947\u0902 \u0924\u094D\u0930\u0941\u091F\u093F.",toast_error_remove:"\u0939\u091F\u093E\u0928\u0947 \u092E\u0947\u0902 \u0924\u094D\u0930\u0941\u091F\u093F.",toast_error_log:"\u0926\u0930\u094D\u091C \u0915\u0930\u0928\u0947 \u092E\u0947\u0902 \u0924\u094D\u0930\u0941\u091F\u093F.",pin_wrong:"\u0917\u0932\u0924 PIN.",pin_label_vehicle:"{name} \u0915\u093E \u0935\u093E\u0939\u0928 \u0939\u091F\u093E\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F PIN \u0926\u0930\u094D\u091C \u0915\u0930\u0947\u0902.",pin_label_complaint:"\u0936\u093F\u0915\u093E\u092F\u0924 \u0939\u091F\u093E\u0928\u0947 \u0915\u0947 \u0932\u093F\u090F PIN \u0926\u0930\u094D\u091C \u0915\u0930\u0947\u0902.",pin_cancel:"\u0930\u0926\u094D\u0926 \u0915\u0930\u0947\u0902",pin_delete:"\u0939\u091F\u093E\u090F\u0902",modal_report_title:"\u0917\u0932\u0924 \u092A\u093E\u0930\u094D\u0915\u093F\u0902\u0917 \u0930\u093F\u092A\u094B\u0930\u094D\u091F \u0915\u0930\u0947\u0902",cm_vehicle:"\u0935\u093E\u0939\u0928",cm_owner:"\u092E\u093E\u0932\u093F\u0915",admin_verify:"Admin \u0938\u0924\u094D\u092F\u093E\u092A\u0928",complaint_reported_by:"\u092B\u094D\u0932\u0948\u091F \u0926\u094D\u0935\u093E\u0930\u093E",veh_count:" \u0935\u093E\u0939\u0928",veh_count_pl:" \u0935\u093E\u0939\u0928",wheel_4:"4 \u092A\u0939\u093F\u092F\u093E",wheel_2:"2 \u092A\u0939\u093F\u092F\u093E",wheel_other:"\u0905\u0928\u094D\u092F",connection_error:"\u0915\u0928\u0947\u0915\u094D\u0936\u0928 \u0924\u094D\u0930\u0941\u091F\u093F",wa_msg_unregistered:"Highland Residency \u0915\u0947 \u0938\u092D\u0940 \u0938\u0926\u0938\u094D\u092F, \u0935\u093E\u0939\u0928 *{plate}* \u0917\u0932\u0924 \u091C\u0917\u0939 \u092A\u093E\u0930\u094D\u0915 \u0939\u0948 \u0914\u0930 \u0938\u093F\u0938\u094D\u091F\u092E \u092E\u0947\u0902 \u092A\u0902\u091C\u0940\u0915\u0943\u0924 \u0928\u0939\u0940\u0902 \u0939\u0948. \u0905\u0917\u0930 \u092F\u0939 \u0906\u092A\u0915\u093E \u0935\u093E\u0939\u0928 \u0939\u0948 \u0924\u094B \u0924\u0941\u0930\u0902\u0924 \u0939\u091F\u093E\u090F\u0902.",wa_msg_owner:"\u0928\u092E\u0938\u094D\u0924\u0947 {name}, \u0906\u092A\u0915\u093E \u0935\u093E\u0939\u0928 {plate} \u0907\u0938 \u0915\u093E\u0930\u0923 \u0930\u093F\u092A\u094B\u0930\u094D\u091F \u0939\u0941\u0906: {issue}.{loc} \u0915\u0943\u092A\u092F\u093E \u0924\u0941\u0930\u0902\u0924 \u0939\u091F\u093E\u090F\u0902.{by}",pending_register:"\u092A\u0902\u091C\u0940\u0915\u0943\u0924 \u0915\u0930\u0947\u0902"}
 };
 
-var currentLang = 'en';
+var currentLang = "en";
+var ADMIN_PIN = "382330";
+var WA_GROUP = "https://chat.whatsapp.com/CJOJ6sSwERI9XUkiEdwlTI";
+var AVATAR_CLASSES = ["av-green","av-blue","av-amber","av-coral","av-purple"];
 
 function t(key){ return (LANGS[currentLang] && LANGS[currentLang][key]) || LANGS.en[key] || key; }
 
 function setLang(lang){
   currentLang = lang;
-  // Update font for Gujarati
-  document.body.style.fontFamily = lang === 'gu' ? "'Noto Sans Gujarati', sans-serif" : lang === 'hi' ? "'Noto Sans Devanagari', sans-serif" : "'DM Sans', sans-serif";
-  // Update lang buttons
-  document.querySelectorAll('.lang-btn').forEach(function(btn){
-    btn.classList.toggle('active', btn.textContent.trim() === (lang === 'en' ? 'EN' : lang === 'gu' ? 'ગુ' : 'हि'));
+  document.body.style.fontFamily = lang==="gu" ? "'Noto Sans Gujarati',sans-serif" : lang==="hi" ? "'Noto Sans Devanagari',sans-serif" : "'DM Sans',sans-serif";
+  document.querySelectorAll(".lang-btn").forEach(function(b){
+    b.classList.toggle("active", (lang==="en"&&b.textContent==="EN")||(lang==="gu"&&b.textContent.trim()==="ગુ")||(lang==="hi"&&b.textContent.trim()==="हि"));
   });
-  // Update all data-i18n elements
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
-    el.textContent = t(el.getAttribute('data-i18n'));
-  });
-  // Update dynamic elements
+  document.querySelectorAll("[data-i18n]").forEach(function(el){ el.textContent = t(el.getAttribute("data-i18n")); });
   updateHeader();
-  updatePlaceholders();
-  updateSelectOptions();
-  // Re-render active tab content
-  var activeTab = document.querySelector('.tab-btn.active');
-  if(activeTab){
-    var id = activeTab.id.replace('tab-','').replace('-btn','');
-    if(id === 'directory') renderDirectory();
-    if(id === 'report') renderComplaints();
-    if(id === 'lookup'){ renderRecent(); }
-  }
+  var pls = {"lookup-input":"search_placeholder","reg-name":"ph_name","reg-plate":"ph_plate","reg-contact":"ph_contact","dir-search":"ph_search","cm-location":"ph_location","cm-by":"ph_reporter"};
+  Object.keys(pls).forEach(function(id){ var el=document.getElementById(id); if(el) el.placeholder=t(pls[id]); });
+  var rf=document.getElementById("reg-floor"); if(rf&&rf.options[0]) rf.options[0].textContent=t("ph_floor");
+  var rb=document.getElementById("reg-block"); if(rb&&rb.options[0]) rb.options[0].textContent=t("ph_block");
+  var rfl=document.getElementById("reg-flat"); if(rfl&&rfl.options[0]) rfl.options[0].textContent=rfl.disabled?t("ph_flat"):t("ph_flat_ready");
+  var rt=document.getElementById("reg-type"); if(rt){rt.options[0].textContent=t("opt_type_default");rt.options[1].textContent=t("opt_4w");rt.options[2].textContent=t("opt_2w");rt.options[3].textContent=t("opt_other");}
+  var ci=document.getElementById("cm-issue"); if(ci){ci.options[0].textContent=t("opt_issue_default");var iss=t("opt_issues");for(var i=0;i<iss.length;i++){if(ci.options[i+1])ci.options[i+1].textContent=iss[i];}}
+  var dbSel=document.getElementById("dir-block"); if(dbSel&&dbSel.options[0]) dbSel.options[0].textContent=t("opt_block_all");
+  var active=document.querySelector(".tab-btn.active");
+  if(active){var id=active.id.replace("tab-","").replace("-btn","");if(id==="directory")renderDirectory();if(id==="report")renderComplaints();if(id==="lookup"){renderRecent();renderPending();}}
 }
 
-function updatePlaceholders(){
-  var map = {
-    'lookup-input': 'search_placeholder',
-    'reg-name': 'ph_name', 'reg-plate': 'ph_plate', 'reg-contact': 'ph_contact',
-    'dir-search': 'ph_search', 'cm-location': 'ph_location', 'cm-by': 'ph_reporter'
-  };
-  Object.keys(map).forEach(function(id){
-    var el = document.getElementById(id);
-    if(el) el.placeholder = t(map[id]);
-  });
-  // Floor/flat/block selects - first options
-  var regFloor = document.getElementById('reg-floor');
-  if(regFloor && regFloor.options[0]) regFloor.options[0].textContent = t('ph_floor');
-  var regBlock = document.getElementById('reg-block');
-  if(regBlock && regBlock.options[0]) regBlock.options[0].textContent = t('ph_block');
-  var regFlat = document.getElementById('reg-flat');
-  if(regFlat && regFlat.options[0]) regFlat.options[0].textContent = regFlat.disabled ? t('ph_flat') : t('ph_flat_ready');
+var firebase_config = {apiKey:"AIzaSyAwOtAR2PcPOapwvXQoQFHXAVhgrWllb0I",authDomain:"highland-residency.firebaseapp.com",projectId:"highland-residency",storageBucket:"highland-residency.firebasestorage.app",messagingSenderId:"373949160659",appId:"1:373949160659:web:f97f0db9a94f821de7c826"};
+firebase.initializeApp(firebase_config);
+var db = firebase.firestore();
+var vehiclesCol = db.collection("vehicles");
+var complaintsCol = db.collection("complaints");
+
+var vehicles = [], complaints = [];
+var pendingDeleteVehicleId = null, pendingDeleteComplaintId = null;
+var _cmPlate="", _cmOwner="", _cmFlat="", _cmContact="", _unreportedPlate="";
+
+function flatLabel(v){ return "Block "+v.block+" · Flat "+v.flat; }
+function initials(n){ return n.trim().split(/\s+/).map(function(w){return w[0];}).join("").substring(0,2).toUpperCase(); }
+function avClass(n){ return AVATAR_CLASSES[n.charCodeAt(0)%AVATAR_CLASSES.length]; }
+
+function showToast(msg,isError){
+  var t=document.getElementById("toast");
+  t.style.background=isError?"var(--danger)":"";
+  t.textContent=msg;
+  t.classList.add("show");
+  setTimeout(function(){t.classList.remove("show");},3000);
 }
-
-function updateSelectOptions(){
-  // reg-type
-  var rt = document.getElementById('reg-type');
-  if(rt){ rt.options[0].textContent = t('opt_type_default'); rt.options[1].textContent = t('opt_4w'); rt.options[2].textContent = t('opt_2w'); rt.options[3].textContent = t('opt_other'); }
-  // cm-issue
-  ['cm-issue'].forEach(function(sid){
-    var sel = document.getElementById(sid);
-    if(!sel) return;
-    sel.options[0].textContent = t('opt_issue_default');
-    var issues = t('opt_issues');
-    for(var i=0;i<issues.length;i++){ if(sel.options[i+1]) sel.options[i+1].textContent = issues[i]; }
-  });
-  // dir-block
-  var db = document.getElementById('dir-block');
-  if(db && db.options[0]) db.options[0].textContent = t('opt_block_all');
-}
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAwOtAR2PcPOapwvXQoQFHXAVhgrWllb0I",
-  authDomain: "highland-residency.firebaseapp.com",
-  projectId: "highland-residency",
-  storageBucket: "highland-residency.firebasestorage.app",
-  messagingSenderId: "373949160659",
-  appId: "1:373949160659:web:f97f0db9a94f821de7c826"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const vehiclesCol = db.collection('vehicles');
-const complaintsCol = db.collection('complaints');
-
-const AVATAR_CLASSES = ['av-green','av-blue','av-amber','av-coral','av-purple'];
-const ADMIN_PIN = '382330';
-const WA_GROUP = 'https://chat.whatsapp.com/CJOJ6sSwERI9XUkiEdwlTI';
-
-let vehicles = [];
-let complaints = [];
-let pendingDeleteVehicleId = null;
-let pendingDeleteComplaintId = null;
-let _cmPlate = '', _cmOwner = '', _cmFlat = '', _cmContact = '';
-
-function flatLabel(v){ return 'Block ' + v.block + ' · Flat ' + v.flat; }
-function initials(n){ return n.trim().split(/\s+/).map(function(w){return w[0];}).join('').substring(0,2).toUpperCase(); }
-function avClass(n){ return AVATAR_CLASSES[n.charCodeAt(0) % AVATAR_CLASSES.length]; }
-
-function showToast(msg, isError){
-  var t = document.getElementById('toast');
-  t.style.background = isError ? 'var(--danger)' : '';
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 3000);
-}
-function openModal(id){ document.getElementById(id).style.display = 'flex'; }
-function closeModal(id){ document.getElementById(id).style.display = 'none'; }
+function openModal(id){ document.getElementById(id).style.display="flex"; }
+function closeModal(id){ document.getElementById(id).style.display="none"; }
 
 function switchTab(id){
-  ['lookup','register','directory','report'].forEach(function(t){
-    document.getElementById('sec-' + t).classList.toggle('active', t === id);
-    document.getElementById('tab-' + t + '-btn').classList.toggle('active', t === id);
+  ["lookup","register","directory","report"].forEach(function(t){
+    document.getElementById("sec-"+t).classList.toggle("active",t===id);
+    document.getElementById("tab-"+t+"-btn").classList.toggle("active",t===id);
   });
-  if(id === 'directory') renderDirectory();
-  if(id === 'report') renderComplaints();
+  if(id==="directory") renderDirectory();
+  if(id==="report") renderComplaints();
 }
 
 function updateHeader(){
-  var n = vehicles.length;
-  document.getElementById('hdr-count').textContent = n + (n === 1 ? t('hdr_vehicles') : t('hdr_vehicles_pl'));
+  var n=vehicles.length;
+  document.getElementById("hdr-count").textContent=n+(n===1?t("hdr_vehicles"):t("hdr_vehicles_pl"));
 }
 
 function renderRecent(){
-  var el = document.getElementById('recent-list');
-  var list = vehicles.slice().sort(function(a,b){return b.ts - a.ts;}).slice(0,4);
-  if(!list.length){
-    el.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><div>No vehicles registered yet</div></div>';
-    return;
-  }
-  el.innerHTML = list.map(function(v){
-    return '<div class="veh-row"><div class="veh-info"><div class="avatar ' + avClass(v.name) + '">' + initials(v.name) + '</div><div><div class="veh-name">' + v.name + '</div><div class="veh-sub">' + flatLabel(v) + '</div></div></div><span class="plate">' + v.plate + '</span></div>';
-  }).join('');
+  var el=document.getElementById("recent-list");
+  var list=vehicles.slice().sort(function(a,b){return b.ts-a.ts;}).slice(0,4);
+  if(!list.length){el.innerHTML='<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><div>'+t("no_vehicles")+'</div></div>';return;}
+  el.innerHTML=list.map(function(v){return '<div class="veh-row"><div class="veh-info"><div class="avatar '+avClass(v.name)+'"><span>'+initials(v.name)+'</span></div><div><div class="veh-name">'+v.name+'</div><div class="veh-sub">'+flatLabel(v)+'</div></div></div><span class="plate">'+v.plate+'</span></div>';}).join("");
+}
+
+function renderPending(){
+  var el=document.getElementById("pending-list");
+  if(!el) return;
+  var allFlats=[];
+  ["A","B","C"].forEach(function(block){for(var f=1;f<=7;f++){[1,2,3,4].forEach(function(n){allFlats.push({block:block,flat:f+"0"+n});});}});
+  var regKeys={};
+  vehicles.forEach(function(v){regKeys[v.block+"|"+v.flat]=true;});
+  var pending=allFlats.filter(function(f){return !regKeys[f.block+"|"+f.flat];});
+  var badge=document.getElementById("pending-count-badge");
+  if(badge) badge.textContent=pending.length+" / 84";
+  if(!pending.length){el.innerHTML='<div class="empty" style="padding:16px 0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" width="28" height="28"><polyline points="20 6 9 17 4 12"/></svg><div style="margin-top:6px;font-size:13px">All flats registered!</div></div>';return;}
+  var chips=pending.map(function(f){return '<span class="pending-chip">'+f.block+f.flat+'</span>';}).join("");
+  el.innerHTML='<div class="pending-carousel">'+chips+'</div>';
 }
 
 function doLookup(){
-  var q = document.getElementById('lookup-input').value.trim().toUpperCase().replace(/\s/g,'');
-  var el = document.getElementById('lookup-result');
-  if(!q){ el.innerHTML = ''; return; }
-  var m = vehicles.find(function(v){ return v.plate === q; });
+  var q=document.getElementById("lookup-input").value.trim().toUpperCase().replace(/\s/g,"");
+  var el=document.getElementById("lookup-result");
+  if(!q){el.innerHTML="";return;}
+  var m=vehicles.find(function(v){return v.plate===q;});
   if(m){
-    var emoji = m.type === '4 wheeler' ? '&#128663;' : m.type === '2 wheeler' ? '&#128757;' : '&#128664;';
-    var phoneSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
-    var waSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>';
-    var warnSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
-    var safeOwner = m.name.replace(/'/g, "\\'");
-    var safeFlat = flatLabel(m).replace(/'/g, "\\'");
-    el.innerHTML = '<div class="result-found">'
-      + '<div class="result-found-header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>Vehicle found</div>'
-      + '<div class="result-found-body">'
-      + '<div class="result-person-row"><div class="avatar ' + avClass(m.name) + '" style="width:46px;height:46px;font-size:15px">' + initials(m.name) + '</div>'
-      + '<div style="flex:1;min-width:0"><div class="person-name">' + m.name + '</div><div class="person-flat">' + flatLabel(m) + '</div></div>'
-      + '<span class="type-badge">' + emoji + ' ' + m.type + '</span></div>'
-      + '<div class="result-plate-box"><span class="result-plate-label">Searched plate</span><span class="result-plate-num">' + q + '</span></div>'
-      + '<div class="result-action-row">'
-      + '<a href="tel:' + m.contact + '" class="result-btn result-btn-call">' + phoneSvg + ' Call owner</a>'
-      + '<a href="https://wa.me/91' + m.contact + '" class="result-btn result-btn-wa" target="_blank">' + waSvg + ' WhatsApp</a>'
-      + '</div>'
-      + '<button class="result-btn result-btn-report" onclick="openComplaintModal(\'' + m.plate + '\',\'' + safeOwner + '\',\'' + safeFlat + '\',\'' + m.contact + '\')">' + warnSvg + ' Report bad parking</button>'
-      + '</div></div>';
+    var emoji=m.type==="4 wheeler"?"&#128663;":m.type==="2 wheeler"?"&#128757;":"&#128664;";
+    var emoji=m.type==="4 wheeler"?"&#128663;":m.type==="2 wheeler"?"&#128757;":"&#128664;";
+    var phoneSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+    var waSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>';
+    var warnSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+    var safeFlat=flatLabel(m).replace(/'/g,"\'");
+    el.innerHTML='<div class="result-found"><div class="result-found-header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>'+t("found_label")+'</div><div class="result-found-body"><div class="result-person-row"><div class="avatar '+avClass(m.name)+'" style="width:46px;height:46px;font-size:15px">'+initials(m.name)+'</div><div style="flex:1;min-width:0"><div class="person-name">'+m.name+'</div><div class="person-flat">'+flatLabel(m)+'</div></div><span class="type-badge">'+emoji+" "+m.type+'</span></div><div class="result-plate-box"><span class="result-plate-label">'+t("lbl_plate")+'</span><span class="result-plate-num">'+q+'</span></div><div class="result-action-row"><a href="tel:'+m.contact+'" class="result-btn result-btn-call">'+phoneSvg+" "+t("call_btn")+'</a><a href="https://wa.me/91'+m.contact+'" class="result-btn result-btn-wa" target="_blank">'+waSvg+" "+t("wa_btn")+'</a></div><button class="result-btn result-btn-report" onclick="openComplaintModal(\"'+m.plate+'\",\"'+safeOwner+'\",\"'+safeFlat+'\",\"'+m.contact+'\")">'+warnSvg+" "+t("report_btn")+'</button></div></div>';
   } else {
-    _unreportedPlate = q;
-    el.innerHTML = '<div class="result-not-found" style="margin-bottom:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span>No vehicle found for <strong>' + q + '</strong>. This vehicle is not registered.</span></div>'
-      + '<button onclick="alertSocietyGroup()" class="result-btn result-btn-wa" style="width:100%;margin-top:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Alert society WhatsApp group</button>';
+    _unreportedPlate=q;
+    el.innerHTML='<div class="result-not-found"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span>'+t("not_found")+' <strong>'+q+'</strong>'+t("not_found2")+'</span></div><button onclick="alertSocietyGroup()" class="result-btn result-btn-wa" style="width:100%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> '+t("alert_btn")+'</button>';
   }
+}
+
+function alertSocietyGroup(){
+  var msg=t("wa_msg_unregistered").replace("{plate}",_unreportedPlate);
+  window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
 }
 
 function updateFlats(){
-  var floor = document.getElementById('reg-floor').value;
-  var flatSel = document.getElementById('reg-flat');
-  flatSel.value = '';
-  if(!floor){ flatSel.innerHTML = '<option value="">Select floor first</option>'; flatSel.disabled = true; return; }
-  var f = parseInt(floor);
-  flatSel.innerHTML = '<option value="">Flat</option>' + [1,2,3,4].map(function(n){ return '<option value="' + f + '0' + n + '">' + f + '0' + n + '</option>'; }).join('');
-  flatSel.disabled = false;
+  var floor=document.getElementById("reg-floor").value;
+  var flatSel=document.getElementById("reg-flat");
+  flatSel.value="";
+  if(!floor){flatSel.innerHTML='<option value="">'+t("ph_flat")+'</option>';flatSel.disabled=true;return;}
+  var f=parseInt(floor);
+  flatSel.innerHTML='<option value="">'+t("ph_flat_ready")+'</option>'+[1,2,3,4].map(function(n){return '<option value="'+f+"0"+n+'">'+f+"0"+n+'</option>';}).join("");
+  flatSel.disabled=false;
 }
 
 function doRegister(){
-  var name = document.getElementById('reg-name').value.trim();
-  var block = document.getElementById('reg-block').value;
-  var floor = document.getElementById('reg-floor').value;
-  var flat = document.getElementById('reg-flat').value;
-  var plate = document.getElementById('reg-plate').value.trim().toUpperCase();
-  var type = document.getElementById('reg-type').value;
-  var contact = document.getElementById('reg-contact').value.trim();
-  if(!name||!block||!floor||!flat||!plate||!type||!contact){ alert('Please fill in all fields.'); return; }
-  if(!/^\d{10}$/.test(contact)){ alert('Please enter a valid 10-digit mobile number.'); return; }
-  if(vehicles.find(function(v){ return v.plate === plate; })){ alert('This vehicle number is already registered.'); return; }
-  var btn = document.getElementById('reg-btn');
-  btn.disabled = true; btn.querySelector('[data-i18n]').textContent = t('reg_saving');
-  vehiclesCol.add({name:name, block:block, floor:floor, flat:flat, plate:plate, type:type, contact:contact, ts:Date.now()})
+  var name=document.getElementById("reg-name").value.trim();
+  var block=document.getElementById("reg-block").value;
+  var floor=document.getElementById("reg-floor").value;
+  var flat=document.getElementById("reg-flat").value;
+  var plate=document.getElementById("reg-plate").value.trim().toUpperCase();
+  var type=document.getElementById("reg-type").value;
+  var contact=document.getElementById("reg-contact").value.trim();
+  if(!name||!block||!floor||!flat||!plate||!type||!contact){alert("Please fill in all fields.");return;}
+  if(!/^\d{10}$/.test(contact)){alert("Please enter a valid 10-digit mobile number.");return;}
+  if(vehicles.find(function(v){return v.plate===plate;})){alert("This vehicle number is already registered.");return;}
+  var btn=document.getElementById("reg-btn");
+  var span=btn.querySelector("[data-i18n]");
+  btn.disabled=true; if(span) span.textContent=t("reg_saving");
+  vehiclesCol.add({name:name,block:block,floor:floor,flat:flat,plate:plate,type:type,contact:contact,ts:Date.now()})
     .then(function(){
-      ['reg-name','reg-plate','reg-contact'].forEach(function(id){ document.getElementById(id).value = ''; });
-      ['reg-block','reg-floor','reg-type'].forEach(function(id){ document.getElementById(id).value = ''; });
-      document.getElementById('reg-flat').innerHTML = '<option value="">Select floor first</option>';
-      document.getElementById('reg-flat').disabled = true;
-      showToast(t('toast_registered'));
-      switchTab('lookup');
+      ["reg-name","reg-plate","reg-contact"].forEach(function(id){document.getElementById(id).value="";});
+      ["reg-block","reg-floor","reg-type"].forEach(function(id){document.getElementById(id).value="";});
+      document.getElementById("reg-flat").innerHTML='<option value="">'+t("ph_flat")+'</option>';
+      document.getElementById("reg-flat").disabled=true;
+      showToast(t("toast_registered"));
+      switchTab("lookup");
     })
-    .catch(function(){ showToast(t('toast_error_save'), true); })
-    .finally(function(){ btn.disabled = false; btn.querySelector('[data-i18n]').textContent = t('reg_btn'); });
+    .catch(function(){showToast(t("toast_error_save"),true);})
+    .finally(function(){btn.disabled=false;if(span)span.textContent=t("reg_btn");});
 }
 
-var delSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>';
+var delSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>';
 
 function renderDirectory(){
-  var q = document.getElementById('dir-search').value.toLowerCase();
-  var bl = document.getElementById('dir-block').value;
-  var list = vehicles.filter(function(v){
-    return (!q || v.name.toLowerCase().includes(q) || v.plate.toLowerCase().includes(q) || v.flat.includes(q)) && (!bl || v.block === bl);
-  }).sort(function(a,b){ return a.block.localeCompare(b.block) || +a.floor - +b.floor || a.flat.localeCompare(b.flat); });
-
-  var el = document.getElementById('directory-list');
-  if(!list.length){ el.innerHTML = '<div class="empty" style="padding:30px 0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><div>No results</div></div>'; return; }
-
-  var groups = {}, order = [];
-  list.forEach(function(v){
-    var key = v.block + '|' + v.flat;
-    if(!groups[key]){ groups[key] = {block:v.block, flat:v.flat, floor:v.floor, name:v.name, four:[], two:[], other:[]}; order.push(key); }
-    if(v.type === '4 wheeler') groups[key].four.push(v);
-    else if(v.type === '2 wheeler') groups[key].two.push(v);
-    else groups[key].other.push(v);
-  });
-
-  function plateRow(v){
-    return '<li class="dir-plate-row"><span class="plate-mono">' + v.plate + '</span><button class="del-btn" onclick="askDeleteVehicle(\'' + v.id + '\',\'' + v.name.replace(/'/g,"\\'") + '\')" title="Remove">' + delSvg + '</button></li>';
-  }
-  function typeBlock(label, emoji, arr){
-    if(!arr.length) return '';
-    return '<div><div class="dir-type-label">' + emoji + ' ' + label + '</div><ul class="dir-plate-list">' + arr.map(plateRow).join('') + '</ul></div>';
-  }
-
-  el.innerHTML = order.map(function(key){
-    var g = groups[key];
-    var total = g.four.length + g.two.length + g.other.length;
-    return '<div class="dir-flat-card"><div class="dir-flat-header"><div><div class="dir-flat-id">Block ' + g.block + ' &bull; Flat ' + g.flat + '</div><div class="dir-flat-name">' + g.name + '</div></div><span class="veh-count-badge">' + total + ' vehicle' + (total > 1 ? 's' : '') + '</span></div>'
-      + '<div class="dir-flat-body">' + typeBlock('4 Wheeler', '&#128663;', g.four) + typeBlock('2 Wheeler', '&#128757;', g.two) + typeBlock('Other', '&#128664;', g.other) + '</div></div>';
-  }).join('');
-
-  document.getElementById('stat-total').textContent = vehicles.length;
-  document.getElementById('stat-cars').textContent = vehicles.filter(function(v){ return v.type === '4 wheeler'; }).length;
-  document.getElementById('stat-bikes').textContent = vehicles.filter(function(v){ return v.type === '2 wheeler'; }).length;
+  var q=document.getElementById("dir-search").value.toLowerCase();
+  var bl=document.getElementById("dir-block").value;
+  var list=vehicles.filter(function(v){return(!q||v.name.toLowerCase().includes(q)||v.plate.toLowerCase().includes(q)||v.flat.includes(q))&&(!bl||v.block===bl);}).sort(function(a,b){return a.block.localeCompare(b.block)||+a.floor-+b.floor||a.flat.localeCompare(b.flat);});
+  var el=document.getElementById("directory-list");
+  if(!list.length){el.innerHTML='<div class="empty" style="padding:30px 0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><div>'+t("no_results")+'</div></div>';return;}
+  var groups={},order=[];
+  list.forEach(function(v){var key=v.block+"|"+v.flat;if(!groups[key]){groups[key]={block:v.block,flat:v.flat,floor:v.floor,name:v.name,four:[],two:[],other:[]};order.push(key);}if(v.type==="4 wheeler")groups[key].four.push(v);else if(v.type==="2 wheeler")groups[key].two.push(v);else groups[key].other.push(v);});
+  list.forEach(function(v){var key=v.block+"|"+v.flat;if(!groups[key]){groups[key]={block:v.block,flat:v.flat,floor:v.floor,name:v.name,four:[],two:[],other:[]};order.push(key);}if(v.type==="4 wheeler")groups[key].four.push(v);else if(v.type==="2 wheeler")groups[key].two.push(v);else groups[key].other.push(v);});
+  function plateRow(v){return '<li class="dir-plate-row"><span class="plate-mono">'+v.plate+'</span><button class="del-btn" onclick="askDeleteVehicle(\"'+v.id+'\",\"'+v.name.replace(/"/g,'&quot;')+'\")" title="Remove">'+delSvg+'</button></li>';}
+  function typeBlock(label,emoji,arr){if(!arr.length)return "";return '<div><div class="dir-type-label">'+emoji+" "+label+'</div><ul class="dir-plate-list">'+arr.map(plateRow).join("")+'</ul></div>';}
+  el.innerHTML=order.map(function(key){var g=groups[key];var total=g.four.length+g.two.length+g.other.length;return '<div class="dir-flat-card"><div class="dir-flat-header"><div><div class="dir-flat-id">Block '+g.block+' &bull; Flat '+g.flat+'</div><div class="dir-flat-name">'+g.name+'</div></div><span class="veh-count-badge">'+total+t(total>1?"veh_count_pl":"veh_count")+'</span></div><div class="dir-flat-body">'+typeBlock(t("wheel_4"),"&#128663;",g.four)+typeBlock(t("wheel_2"),"&#128757;",g.two)+typeBlock(t("wheel_other"),"&#128664;",g.other)+'</div></div>';}).join("");
+  document.getElementById("stat-cars").textContent=vehicles.filter(function(v){return v.type==="4 wheeler";}).length;
+  document.getElementById("stat-bikes").textContent=vehicles.filter(function(v){return v.type==="2 wheeler";}).length;
 }
 
-function askDeleteVehicle(docId, name){
-  pendingDeleteVehicleId = docId;
-  document.getElementById('pin-label').textContent = t('pin_label_vehicle').replace('{name}', name);
-  document.getElementById('pin-input').value = '';
-  document.getElementById('pin-error').style.display = 'none';
-  openModal('pin-modal');
-  setTimeout(function(){ document.getElementById('pin-input').focus(); }, 100);
+function askDeleteVehicle(docId,name){
+  pendingDeleteVehicleId=docId;
+  document.getElementById("pin-label").textContent=t("pin_label_vehicle").replace("{name}",name);
+  document.getElementById("pin-input").value="";
+  document.getElementById("pin-error").style.display="none";
+  openModal("pin-modal");
+  setTimeout(function(){document.getElementById("pin-input").focus();},100);
 }
 function confirmDelete(){
-  if(document.getElementById('pin-input').value.trim() !== ADMIN_PIN){
-    document.getElementById('pin-error').textContent = t('pin_wrong'); document.getElementById('pin-error').style.display = 'block';
-    document.getElementById('pin-input').value = ''; return;
-  }
-  closeModal('pin-modal');
-  vehiclesCol.doc(pendingDeleteVehicleId).delete()
-    .then(function(){ showToast(t('toast_removed')); })
-    .catch(function(){ showToast(t('toast_error_remove'), true); });
-  pendingDeleteVehicleId = null;
+  if(document.getElementById("pin-input").value.trim()!==ADMIN_PIN){document.getElementById("pin-error").textContent=t("pin_wrong");document.getElementById("pin-error").style.display="block";document.getElementById("pin-input").value="";return;}
+  closeModal("pin-modal");
+  vehiclesCol.doc(pendingDeleteVehicleId).delete().then(function(){showToast(t("toast_removed"));}).catch(function(){showToast(t("toast_error_remove"),true);});
+  pendingDeleteVehicleId=null;
 }
 
-function openComplaintModal(plate, owner, flat, contact){
-  _cmPlate = plate; _cmOwner = owner; _cmFlat = flat; _cmContact = contact;
-  document.getElementById('cm-plate').textContent = plate;
-  document.getElementById('cm-owner').textContent = owner;
-  document.getElementById('cm-flat').textContent = flat;
-  document.getElementById('cm-issue').value = '';
-  document.getElementById('cm-location').value = '';
-  document.getElementById('cm-by').value = '';
-  openModal('complaint-modal');
+function openComplaintModal(plate,owner,flat,contact){
+  _cmPlate=plate;_cmOwner=owner;_cmFlat=flat;_cmContact=contact;
+  document.getElementById("cm-plate").textContent=plate;
+  document.getElementById("cm-owner").textContent=owner;
+  document.getElementById("cm-flat").textContent=flat;
+  document.getElementById("cm-issue").value="";
+  document.getElementById("cm-location").value="";
+  document.getElementById("cm-by").value="";
+  openModal("complaint-modal");
 }
 function cmWhatsApp(){
-  var issue = document.getElementById('cm-issue').value;
-  var loc = document.getElementById('cm-location').value.trim();
-  var by = document.getElementById('cm-by').value.trim();
-  if(!issue){ alert(t('opt_issue_default')); return; }
-  var msg = t('wa_msg_owner')
-    .replace('{name}', _cmOwner.split(' ')[0])
-    .replace('{plate}', _cmPlate)
-    .replace('{issue}', issue)
-    .replace('{loc}', loc ? ' Location: ' + loc + '.' : '')
-    .replace('{by}', by ? ' - Reported by Flat ' + by : '');
-  window.open('https://wa.me/91' + _cmContact + '?text=' + encodeURIComponent(msg), '_blank');
+  var issue=document.getElementById("cm-issue").value;
+  var loc=document.getElementById("cm-location").value.trim();
+  var by=document.getElementById("cm-by").value.trim();
+  if(!issue){alert(t("opt_issue_default"));return;}
+  var msg=t("wa_msg_owner").replace("{name}",_cmOwner.split(" ")[0]).replace("{plate}",_cmPlate).replace("{issue}",issue).replace("{loc}",loc?" Location: "+loc+".":"").replace("{by}",by?" - Reported by Flat "+by:"");
+  window.open("https://wa.me/91"+_cmContact+"?text="+encodeURIComponent(msg),"_blank");
 }
 function cmLogComplaint(){
-  var issue = document.getElementById('cm-issue').value;
-  var loc = document.getElementById('cm-location').value.trim();
-  var by = document.getElementById('cm-by').value.trim();
-  if(!issue || !by){ alert('Please select an issue and enter your flat.'); return; }
-  complaintsCol.add({plate:_cmPlate, ownerName:_cmOwner, ownerFlat:_cmFlat, issue:issue, location:loc, reportedBy:by, registered:true, ts:Date.now()})
-    .then(function(){ closeModal('complaint-modal'); showToast(t('toast_complaint_logged')); })
-    .catch(function(){ showToast(t('toast_error_log'), true); });
+  var issue=document.getElementById("cm-issue").value;
+  var loc=document.getElementById("cm-location").value.trim();
+  var by=document.getElementById("cm-by").value.trim();
+  if(!issue||!by){alert("Please select an issue and enter your flat.");return;}
+  complaintsCol.add({plate:_cmPlate,ownerName:_cmOwner,ownerFlat:_cmFlat,issue:issue,location:loc,reportedBy:by,registered:true,ts:Date.now()}).then(function(){closeModal("complaint-modal");showToast(t("toast_complaint_logged"));}).catch(function(){showToast(t("toast_error_log"),true);});
 }
 
 function askDeleteComplaint(id){
-  pendingDeleteComplaintId = id;
-  document.getElementById('cpin-input').value = '';
-  document.getElementById('cpin-error').style.display = 'none';
-  openModal('cpin-modal');
-  setTimeout(function(){ document.getElementById('cpin-input').focus(); }, 100);
+  pendingDeleteComplaintId=id;
+  document.getElementById("cpin-input").value="";
+  document.getElementById("cpin-error").style.display="none";
+  openModal("cpin-modal");
+  setTimeout(function(){document.getElementById("cpin-input").focus();},100);
 }
 function confirmDeleteComplaint(){
-  if(document.getElementById('cpin-input').value.trim() !== ADMIN_PIN){
-    document.getElementById('cpin-error').textContent = t('pin_wrong'); document.getElementById('cpin-error').style.display = 'block';
-    document.getElementById('cpin-input').value = ''; return;
-  }
-  closeModal('cpin-modal');
-  complaintsCol.doc(pendingDeleteComplaintId).delete()
-    .then(function(){ showToast(t('toast_complaint_removed')); })
-    .catch(function(){ showToast(t('toast_error_remove'), true); });
-  pendingDeleteComplaintId = null;
+  if(document.getElementById("cpin-input").value.trim()!==ADMIN_PIN){document.getElementById("cpin-error").textContent=t("pin_wrong");document.getElementById("cpin-error").style.display="block";document.getElementById("cpin-input").value="";return;}
+  closeModal("cpin-modal");
+  complaintsCol.doc(pendingDeleteComplaintId).delete().then(function(){showToast(t("toast_complaint_removed"));}).catch(function(){showToast(t("toast_error_remove"),true);});
+  pendingDeleteComplaintId=null;
 }
 
 function renderComplaints(){
-  var el = document.getElementById('complaint-list');
-  if(!complaints.length){
-    el.innerHTML = '<div class="empty" style="padding:24px 0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" width="32" height="32"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div style="margin-top:8px">No complaints yet</div></div>';
-    return;
-  }
-  var sorted = complaints.slice().sort(function(a,b){ return b.ts - a.ts; });
-  el.innerHTML = sorted.map(function(c){
-    var d = new Date(c.ts);
-    var ds = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
-    return '<div class="complaint-card">'
-      + '<div class="complaint-top">'
-      + '<span class="plate" style="font-size:13px">' + c.plate + '</span>'
-      + '<span class="complaint-issue">' + c.issue + '</span>'
-      + (c.registered === false ? '<span class="unreg-badge">Unregistered</span>' : '')
-      + '<button class="del-btn" style="margin-left:auto" onclick="askDeleteComplaint(\'' + c.id + '\')" title="Delete">' + delSvg + '</button>'
-      + '</div>'
-      + '<div class="complaint-meta">' + c.ownerName + (c.ownerFlat && c.ownerFlat !== '-' ? ' &middot; ' + c.ownerFlat : '') + '</div>'
-      + (c.location ? '<div class="complaint-loc">&#128205; ' + c.location + '</div>' : '')
-      + '<div class="complaint-foot">Reported by Flat ' + c.reportedBy + ' &middot; ' + ds + '</div>'
-      + '</div>';
-  }).join('');
-}
-
-
-var _unreportedPlate = '';
-function alertSocietyGroup(){
-  var msg = t('wa_msg_unregistered').replace('{plate}', _unreportedPlate);
-  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+  var el=document.getElementById("complaint-list");
+  if(!complaints.length){el.innerHTML='<div class="empty" style="padding:24px 0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" width="32" height="32"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div style="margin-top:8px">'+t("no_complaints")+'</div></div>';return;}
+  var sorted=complaints.slice().sort(function(a,b){return b.ts-a.ts;});
+  el.innerHTML=sorted.map(function(c){var d=new Date(c.ts);var ds=d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear()+" "+d.getHours()+":"+String(d.getMinutes()).padStart(2,"0");return '<div class="complaint-card"><div class="complaint-top"><span class="plate" style="font-size:13px">'+c.plate+'</span><span class="complaint-issue">'+c.issue+'</span>'+(c.registered===false?'<span class="unreg-badge">Unregistered</span>':"")+'<button class="del-btn" style="margin-left:auto" onclick="askDeleteComplaint(\"'+c.id+'\")" title="Delete">'+delSvg+'</button></div><div class="complaint-meta">'+c.ownerName+(c.ownerFlat&&c.ownerFlat!=="-"?' · '+c.ownerFlat:"")+'</div>'+(c.location?'<div class="complaint-loc">&#128205; '+c.location+'</div>':"")+'<div class="complaint-foot">'+t("complaint_reported_by")+" "+c.reportedBy+' · '+ds+'</div></div>';}).join("");
 }
 
 vehiclesCol.onSnapshot(function(snap){
-  vehicles = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
-  updateHeader(); renderRecent();
-  if(document.getElementById('tab-directory-btn').classList.contains('active')) renderDirectory();
-}, function(){ document.getElementById('hdr-count').textContent = t('connection_error'); });
+  vehicles=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
+  updateHeader(); renderRecent(); renderPending();
+  if(document.getElementById("tab-directory-btn").classList.contains("active")) renderDirectory();
+},function(){document.getElementById("hdr-count").textContent=t("connection_error");});
 
 complaintsCol.onSnapshot(function(snap){
-  complaints = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
-  if(document.getElementById('tab-report-btn').classList.contains('active')) renderComplaints();
-}, function(e){ console.error(e); });
+  complaints=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
+  if(document.getElementById("tab-report-btn").classList.contains("active")) renderComplaints();
+},function(e){console.error(e);});
 
-// Init language
-setLang('en');
+setLang("en");
 </script>
 </body>
 </html>
